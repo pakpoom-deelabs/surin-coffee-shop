@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ร้านกาแฟ ของสุรินทร์ — เสน่ห์แห่งอีสาน</title>
+  <meta name="description" content="ร้านกาแฟ ของสุรินทร์ — กาแฟคั่วสดจากไร่ท้องถิ่น บรรยากาศอบอุ่น ใจกลางเมืองสุรินทร์">
+  <style>
+    /* =========================================
+       DESIGN SYSTEM — Dark Espresso Editorial
+       Variant 2: Split/Asymmetric · Dark Mode · Serif
+       ========================================= */
+    :root {
+      --bg-base:      #0d0703;
+      --bg-surface:   #180d06;
+      --bg-card:      #221208;
+      --bg-raised:    #2e1a0c;
+      --gold:         #c8963c;
+      --gold-light:   #e8b86a;
+      --gold-muted:   #8a6428;
+      --cream:        #f2e4cc;
+      --cream-dim:    #c4aa88;
+      --cream-faint:  #7a6248;
+      --border:       #3a220e;
+      --border-light: #522e14;
+      --red-accent:   #8b2a2a;
+
+      --font-serif:   Georgia, 'Times New Roman', serif;
+      --font-display: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+      --font-sans:    -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+      --space-xs:  0.375rem;
+      --space-sm:  0.75rem;
+      --space-md:  1.25rem;
+      --space-lg:  2rem;
+      --space-xl:  3.5rem;
+      --space-2xl: 6rem;
+
+      --radius-sm: 2px;
+      --radius-md: 6px;
+      --radius-lg: 12px;
+
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--cream);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+
+    /* =========================================
+       TYPOGRAPHY
+       ========================================= */
+    .t-label {
+      font-family: var(--font-sans);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .t-display {
+      font-family: var(--font-display);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .t-serif {
+      font-family: var(--font-serif);
+      line-height: 1.3;
+    }
+
+    .t-body {
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      color: var(--cream-dim);
+      line-height: 1.75;
+    }
+
+    .t-caption {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: var(--cream-faint);
+      letter-spacing: 0.04em;
+    }
+
+    /* =========================================
+       DIVIDERS
+       ========================================= */
+    .rule {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .rule::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* =========================================
+       NAVIGATION
+       ========================================= */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-md) var(--space-lg);
+      background: rgba(13, 7, 3, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: padding var(--transition);
+    }
+
+    .nav-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .nav-brand-th {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+
+    .nav-brand-en {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+    }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.8125rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+
+    .nav-cta {
+      display: none;
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--gold-muted);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all var(--transition);
+    }
+
+    .nav-cta:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--bg-base);
+    }
+
+    .nav-burger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .nav-burger span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--cream);
+      transition: all var(--transition);
+    }
+
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+      .nav-cta   { display: block; }
+      .nav-burger { display: none; }
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(300px, 85vw);
+      background: var(--bg-surface);
+      border-left: 1px solid var(--border);
+      z-index: 200;
+      padding: var(--space-xl) var(--space-lg);
+      transform: translateX(100%);
+      transition: transform var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .mobile-menu.open { transform: translateX(0); }
+
+    .mobile-menu-close {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      background: none;
+      border: none;
+      color: var(--cream-dim);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .mobile-nav-links a {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--cream);
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 150;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition);
+    }
+
+    .overlay.open { opacity: 1; pointer-events: all; }
+
+    /* =========================================
+       HERO — Asymmetric Split
+       ========================================= */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      position: relative;
+    }
+
+    /* Mobile: stacked */
+    .hero-image-wrap {
+      position: relative;
+      height: 55vw;
+      min-height: 240px;
+      max-height: 420px;
+      overflow: hidden;
+    }
+
+    .hero-image-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(13,7,3,0.1) 0%,
+        rgba(13,7,3,0.6) 70%,
+        var(--bg-base) 100%
+      );
+    }
+
+    .hero-image-wrap img {
+      object-position: center 30%;
+    }
+
+    .hero-content {
+      padding: var(--space-lg) var(--space-lg) var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-eyebrow-line {
+      width: 2.5rem;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      font-size: clamp(2.75rem, 8vw, 5.5rem);
+      color: var(--cream);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-serif);
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--cream-dim);
+      max-width: 38ch;
+      line-height: 1.5;
+      margin-bottom: var(--space-xl);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.875rem;
+      background: var(--gold);
+      color: var(--bg-base);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.875rem;
+      background: transparent;
+      color: var(--cream-dim);
+      font-size: 0.8125rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-light);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--cream-dim);
+      color: var(--cream);
+    }
+
+    .hero-stats {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: var(--space-xl);
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 0.75rem;
+      color: var(--cream-faint);
+      letter-spacing: 0.06em;
+      margin-top: 0.25rem;
+    }
+
+    /* Desktop: true side-by-side split */
+    @media (min-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        padding-top: 80px; /* nav height */
+      }
+
+      .hero-image-wrap {
+        height: auto;
+        max-height: none;
+        order: 2;
+        position: sticky;
+        top: 0;
+      }
+
+      .hero-image-wrap::after {
+        background: linear-gradient(
+          to right,
+          var(--bg-base) 0%,
+          rgba(13,7,3,0.2) 30%,
+          transparent 100%
+        );
+      }
+
+      .hero-content {
+        order: 1;
+        padding: var(--space-2xl) var(--space-xl) var(--space-2xl) clamp(var(--space-lg), 6vw, 7rem);
+        min-height: calc(100svh - 80px);
+      }
+    }
+
+    /* =========================================
+       SCROLL MARQUEE
+       ========================================= */
+    .marquee-bar {
+      background: var(--gold);
+      padding: 0.6rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee 28s linear infinite;
+    }
+
+    .marquee-track span {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--bg-base);
+      padding: 0 2rem;
+    }
+
+    .marquee-dot {
+      color: var(--bg-surface);
+      opacity: 0.5;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+    }
+
+    /* =========================================
+       STORY SECTION
+       ========================================= */
+    .story {
+      padding: var(--space-2xl) var(--space-lg);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .story-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+
+    .story-text-col .rule { margin-bottom: var(--space-lg); }
+
+    .story-heading {
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      margin-bottom: var(--space-md);
+      color: var(--cream);
+    }
+
+    .story-lead {
+      font-family: var(--font-serif);
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: var(--cream-dim);
+      line-height: 1.75;
+      margin-bottom: var(--space-md);
+    }
+
+    .story-body {
+      font-size: 0.9375rem;
+      color: var(--cream-faint);
+      line-height: 1.8;
+    }
+
+    .story-pullquote {
+      margin: var(--space-lg) 0;
+      padding: var(--space-md) var(--space-lg);
+      border-left: 2px solid var(--gold);
+      background: var(--bg-surface);
+    }
+
+    .story-pullquote p {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--gold-light);
+      line-height: 1.4;
+    }
+
+    .story-image-col {
+      position: relative;
+    }
+
+    .story-image-main {
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+    }
+
+    .story-image-badge {
+      position: absolute;
+      bottom: -1rem;
+      right: 1rem;
+      width: 6rem;
+      height: 6rem;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    .story-image-badge span:first-child {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--bg-base);
+      line-height: 1;
+    }
+
+    .story-image-badge span:last-child {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bg-surface);
+      margin-top: 2px;
+    }
+
+    @media (min-width: 768px) {
+      .story-inner {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+
+      .story-image-col { order: -1; }
+    }
+
+    @media (min-width: 1100px) {
+      .story-inner {
+        grid-template-columns: 5fr 4fr;
+        gap: var(--space-2xl);
+      }
+    }
+
+    /* =========================================
+       OFFERINGS — MENU GRID
+       ========================================= */
+    .offerings {
+      padding: var(--space-2xl) var(--space-lg);
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      max-width: 1400px;
+      margin: 0 auto var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    @media (min-width: 768px) {
+      .section-header {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+    }
+
+    .section-heading {
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      color: var(--cream);
+    }
+
+    .section-sub {
+      font-size: 0.875rem;
+      color: var(--cream-faint);
+      max-width: 40ch;
+      text-align: right;
+    }
+
+    .menu-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .menu-card {
+      background: var(--bg-card);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      transition: background var(--transition);
+      cursor: default;
+    }
+
+    .menu-card:hover {
+      background: var(--bg-raised);
+    }
+
+    .menu-card-icon {
+      font-size: 1.75rem;
+      line-height: 1;
+      margin-bottom: var(--space-xs);
+    }
+
+    .menu-card-name {
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      color: var(--cream);
+    }
+
+    .menu-card-desc {
+      font-size: 0.85rem;
+      color: var(--cream-faint);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .menu-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+
+    .menu-card-price {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      color: var(--gold-light);
+    }
+
+    .menu-card-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.5rem;
+      border: 1px solid var(--gold-muted);
+      color: var(--gold-muted);
+    }
+
+    .menu-card.featured {
+      background: var(--bg-raised);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-card.featured::before {
+      content: 'แนะนำ';
+      position: absolute;
+      top: 0.75rem;
+      right: -1.5rem;
+      background: var(--gold);
+      color: var(--bg-base);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 2rem;
+      transform: rotate(35deg);
+      transform-origin: right center;
+    }
+
+    /* =========================================
+       ATMOSPHERE — Full-Bleed Image
+       ========================================= */
+    .atmosphere {
+      position: relative;
+      height: clamp(320px, 55vw, 640px);
+      overflow: hidden;
+    }
+
+    .atmosphere-image {
+      position: absolute;
+      inset: 0;
+    }
+
+    .atmosphere-image img {
+      object-position: center 40%;
+      filter: brightness(0.55);
+    }
+
+    .atmosphere-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(13,7,3,0.85) 0%,
+        transparent 60%
+      );
+      display: flex;
+      align-items: center;
+      padding: var(--space-xl) clamp(var(--space-lg), 8vw, 8rem);
+    }
+
+    .atmosphere-text {
+      max-width: 560px;
+    }
+
+    .atmosphere-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.25;
+      margin-bottom: var(--space-md);
+    }
+
+    .atmosphere-credit {
+      font-size: 0.8rem;
+      color: var(--gold-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================
+       PROCESS / CRAFT SECTION
+       ========================================= */
+    .craft {
+      padding: var(--space-2xl) var(--space-lg);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .craft-header {
+      margin-bottom: var(--space-xl);
+    }
+
+    .craft-steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .craft-step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--space-lg);
+      padding: var(--space-lg) 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+
+    .craft-step:last-child { border-bottom: none; }
+
+    .craft-step-num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      color: var(--gold-muted);
+      line-height: 1;
+      opacity: 0.5;
+      width: 3rem;
+      text-align: right;
+    }
+
+    .craft-step-title {
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      color: var(--cream);
+      margin-bottom: var(--space-xs);
+    }
+
+    .craft-step-desc {
+      font-size: 0.875rem;
+      color: var(--cream-faint);
+      line-height: 1.7;
+    }
+
+    @media (min-width: 768px) {
+      .craft-steps {
+        grid-template-columns: 1fr 1fr;
+        gap: 0 var(--space-xl);
+      }
+
+      .craft-step {
+        border-bottom: none;
+        border-top: 1px solid var(--border);
+      }
+    }
+
+    /* =========================================
+       TESTIMONIALS
+       ========================================= */
+    .testimonials {
+      padding: var(--space-2xl) var(--space-lg);
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+    }
+
+    .testimonials-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .testimonials-header {
+      margin-bottom: var(--space-xl);
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+
+    @media (min-width: 640px) {
+      .review-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (min-width: 1100px) {
+      .review-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .review-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      transition: border-color var(--transition);
+    }
+
+    .review-card:hover { border-color: var(--gold-muted); }
+
+    .review-stars {
+      display: flex;
+      gap: 3px;
+    }
+
+    .star {
+      width: 14px;
+      height: 14px;
+      background: var(--gold);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+
+    .review-text {
+      font-family: var(--font-serif);
+      font-size: 0.9375rem;
+      font-style: italic;
+      color: var(--cream-dim);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--border);
+    }
+
+    .review-avatar {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      background: var(--bg-raised);
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--gold);
+    }
+
+    .review-author-name {
+      font-size: 0.8125rem;
+      color: var(--cream);
+      font-weight: 600;
+    }
+
+    .review-author-meta {
+      font-size: 0.7rem;
+      color: var(--cream-faint);
+      margin-top: 1px;
+    }
+
+    /* =========================================
+       CTA SECTION
+       ========================================= */
+    .cta-section {
+      padding: var(--space-2xl) var(--space-lg);
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cta-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .cta-ornament-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border-light));
+      max-width: 120px;
+    }
+
+    .cta-ornament-line:last-child {
+      background: linear-gradient(to left, transparent, var(--border-light));
+    }
+
+    .cta-ornament-icon {
+      font-size: 1.5rem;
+    }
+
+    .cta-heading {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--cream);
+      margin-bottom: var(--space-md);
+    }
+
+    .cta-subheading {
+      font-family: var(--font-serif);
+      font-size: 1.0625rem;
+      color: var(--cream-dim);
+      margin-bottom: var(--space-xl);
+      max-width: 50ch;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.65;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      justify-content: center;
+    }
+
+    .cta-info {
+      margin-top: var(--space-xl);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      text-align: left;
+      padding-top: var(--space-xl);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (min-width: 540px) {
+      .cta-info { grid-template-columns: repeat(3, 1fr); text-align: center; }
+    }
+
+    .cta-info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .cta-info-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+    }
+
+    .cta-info-value {
+      font-family: var(--font-serif);
+      font-size: 0.9375rem;
+      color: var(--cream-dim);
+    }
+
+    /* =========================================
+       MAP / LOCATION VISUAL
+       ========================================= */
+    .location-bar {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border);
+      padding: var(--space-lg);
+    }
+
+    .location-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    @media (min-width: 768px) {
+      .location-inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .location-address {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+    }
+
+    .location-pin {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .location-text-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+    }
+
+    .location-text-addr {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--cream);
+      margin-top: 2px;
+    }
+
+    .location-hours {
+      display: flex;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+    }
+
+    .location-hours-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    /* =========================================
+       FOOTER
+       ========================================= */
+    footer {
+      background: var(--bg-base);
+      border-top: 1px solid var(--border);
+      padding: var(--space-xl) var(--space-lg) var(--space-lg);
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+      padding-bottom: var(--space-xl);
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (min-width: 640px) {
+      .footer-top { grid-template-columns: 1.5fr 1fr 1fr; }
+    }
+
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--cream);
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer-brand-tagline {
+      font-size: 0.8125rem;
+      color: var(--cream-faint);
+      line-height: 1.6;
+      max-width: 30ch;
+    }
+
+    .footer-col-title {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      margin-bottom: var(--space-md);
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      color: var(--cream-faint);
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      margin-top: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    @media (min-width: 640px) {
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--cream-faint);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .footer-social a {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream-faint);
+      transition: color var(--transition);
+    }
+
+    .footer-social a:hover { color: var(--gold-light); }
+
+    /* =========================================
+       UTILITY ANIMATIONS
+       ========================================= */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-base); }
+    ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold-muted); }
+
+    /* Focus */
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" role="navigation" aria-label="เมนูหลัก">
+    <a href="#" class="nav-brand" aria-label="ร้านกาแฟ ของสุรินทร์">
+      <span class="nav-brand-th">ร้านกาแฟ ของสุรินทร์</span>
+      <span class="nav-brand-en">Surin Coffee Collective</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#story">เรื่องราว</a></li>
+      <li><a href="#menu">เมนู</a></li>
+      <li><a href="#atmosphere">บรรยากาศ</a></li>
+      <li><a href="#reviews">รีวิว</a></li>
+    </ul>
+    <a href="#visit" class="nav-cta">มาเยี่ยมเรา</a>
+    <button class="nav-burger" aria-label="เปิดเมนู" onclick="openMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="เมนูนำทาง">
+    <button class="mobile-menu-close" onclick="closeMenu()" aria-label="ปิดเมนู">×</button>
+    <ul class="mobile-nav-links" role="list">
+      <li><a href="#story" onclick="closeMenu()">เรื่องราว</a></li>
+      <li><a href="#menu" onclick="closeMenu()">เมนู</a></li>
+      <li><a href="#atmosphere" onclick="closeMenu()">บรรยากาศ</a></li>
+      <li><a href="#reviews" onclick="closeMenu()">รีวิว</a></li>
+      <li><a href="#visit" onclick="closeMenu()">มาเยี่ยมเรา</a></li>
+    </ul>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-image-wrap">
+      <img
+        src="https://picsum.photos/seed/espresso-dark/1200/900"
+        alt="กาแฟคั่วสดในบรรยากาศอบอุ่น"
+        loading="eager"
+        fetchpriority="high"
+      >
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span class="t-label">สุรินทร์ · ตั้งแต่ปี 2559</span>
+      </div>
+
+      <h1 class="t-display hero-title">
+        กาแฟดี<br>
+        มีที่<em>นี่</em><br>
+        เสมอ
+      </h1>
+
+      <p class="hero-subtitle">
+        เราคัดสรรเมล็ดกาแฟจากไร่บนดอยสูง นำมาคั่วสดทุกวัน
+        เพื่อมอบรสชาติที่ดีที่สุดให้กับทุกแก้วที่คุณดื่ม
+      </p>
+
+      <div class="hero-actions">
+        <a href="#menu" class="btn-primary">
+          ดูเมนูของเรา
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#story" class="btn-ghost">รู้จักเรา</a>
+      </div>
+
+      <div class="hero-stats" aria-label="ตัวเลขที่น่าภูมิใจ">
+        <div>
+          <div class="hero-stat-num">8+</div>
+          <div class="hero-stat-label">ปีแห่งความรัก</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">12</div>
+          <div class="hero-stat-label">แหล่งกาแฟ</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">200+</div>
+          <div class="hero-stat-label">แก้วต่อวัน</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MARQUEE -->
+  <div class="marquee-bar" aria-hidden="true">
+    <div class="marquee-track">
+      <!-- repeated twice for seamless loop -->
+      <span>กาแฟอาราบิก้า</span><span class="marquee-dot">·</span>
+      <span>คั่วสดทุกวัน</span><span class="marquee-dot">·</span>
+      <span>ชาจากไร่ท้องถิ่น</span><span class="marquee-dot">·</span>
+      <span>เบเกอรี่โฮมเมด</span><span class="marquee-dot">·</span>
+      <span>Specialty Coffee</span><span class="marquee-dot">·</span>
+      <span>บรรยากาศอบอุ่น</span><span class="marquee-dot">·</span>
+      <span>ใจกลางสุรินทร์</span><span class="marquee-dot">·</span>
+      <!-- duplicate -->
+      <span>กาแฟอาราบิก้า</span><span class="marquee-dot">·</span>
+      <span>คั่วสดทุกวัน</span><span class="marquee-dot">·</span>
+      <span>ชาจากไร่ท้องถิ่น</span><span class="marquee-dot">·</span>
+      <span>เบเกอรี่โฮมเมด</span><span class="marquee-dot">·</span>
+      <span>Specialty Coffee</span><span class="marquee-dot">·</span>
+      <span>บรรยากาศอบอุ่น</span><span class="marquee-dot">·</span>
+      <span>ใจกลางสุรินทร์</span><span class="marquee-dot">·</span>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- STORY -->
+    <section class="story" id="story" aria-labelledby="story-heading">
+      <div class="story-inner">
+        <div class="story-text-col fade-up">
+          <div class="rule"><span class="t-label">เรื่องราวของเรา</span></div>
+          <h2 class="t-display story-heading" id="story-heading">
+            เริ่มต้นจาก<br>ความรักในกาแฟ
+          </h2>
+          <p class="story-lead">
+            สุรินทร์เปิดร้านในปี 2559 ด้วยความฝันเล็กๆ
+            ว่าจะมีร้านที่ทำให้ทุกคนรู้สึกเหมือนอยู่บ้าน
+            พร้อมกาแฟถ้วยที่ดีที่สุดในเมือง
+          </p>
+          <p class="story-body">
+            เราเชื่อว่ากาแฟที่ดีเริ่มต้นจากเมล็ดพันธุ์ดี
+            เราจึงเดินทางไปคัดสรรเมล็ดกาแฟจากไร่ในเชียงใหม่ เชียงราย
+            และนานาประเทศที่มีชื่อเสียง ทุกเมล็ดผ่านกระบวนการคัดเลือก
+            และคั่วด้วยมือของเราเองที่ร้าน เพื่อให้คุณได้รับกาแฟสดใหม่ทุกวัน
+          </p>
+
+          <blockquote class="story-pullquote">
+            <p>"กาแฟที่ดีไม่ได้แค่ตื่นร่างกาย มันปลุกจิตวิญญาณด้วย"</p>
+          </blockquote>
+
+          <p class="story-body">
+            วันนี้ ร้านของสุรินทร์กลายเป็นจุดนัดพบของคนรักกาแฟ
+            นักศึกษา พ่อค้าแม่ขาย และนักท่องเที่ยวที่อยากสัมผัส
+            ความอบอุ่นแบบอีสานแท้ๆ ในแก้วเดียว
+          </p>
+        </div>
+
+        <div class="story-image-col fade-up">
+          <div class="story-image-main">
+            <img
+              src="https://picsum.photos/seed/barista-craft/800/1000"
+              alt="บาริสต้ากำลังชงกาแฟด้วยความตั้งใจ"
+              loading="lazy"
+            >
+          </div>
+          <div class="story-image-badge" aria-label="เปิดให้บริการมา 8 ปี">
+            <span>8</span>
+            <span>ปีแห่ง<br>ความรัก</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="offerings" id="menu" aria-labelledby="menu-heading">
+      <div class="section-header fade-up">
+        <div>
+          <div class="rule"><span class="t-label">เมนูคัดสรร</span></div>
+          <h2 class="t-display section-heading" id="menu-heading">สิ่งที่เรามี</h2>
+        </div>
+        <p class="section-sub">
+          ทุกรายการทำสดใหม่<br>ด้วยวัตถุดิบที่ดีที่สุด
+        </p>
+      </div>
+
+      <div class="menu-grid" role="list">
+
+        <article class="menu-card featured" role="listitem">
+          <div class="menu-card-icon" aria-hidden="true">☕</div>
+          <h3 class="menu-card-name">Signature Surin Blend</h3>
+          <p class="menu-card-desc">
+            กาแฟบลันด์พิเศษเฉพาะของเรา ผสมอาราบิก้าจากสองแหล่ง
+            ให้รสชาติที่สมดุล หอมกรุ่น มีความเป็นช็อกโกแลตอ่อนๆ
+          </p>
+          <div class="menu-card-footer">
+            <span class="menu-card-price">฿85</span>
+            <span class="menu-card-tag">Best Seller</span>
+          </div>
+        </article>
+
+        <article class="menu-card" role="listitem">
+          <div class="menu-card-icon" aria-hidden="true">🧊</div>
+          <h3 class="menu-card-name">Cold Brew ไทย</h3>
+          <p class="menu-card-desc">
+            แช่เย็น 18 ชั่วโมง ด้วยน้ำเย็นสะอาด
+            ได้รสชาติที่เข้มข้นแต่ไม่ขม เหมาะกับวันร้อนๆ
+          </p>
+          <div class="menu-card-footer">
+            <span class="menu-card-price">฿75</span>
+            <span class="menu-card-tag">Cold</span>
+          </div>
+        </article>
+
+        <article class="menu-card" role="listitem">
+          <div class="menu-card-icon" aria-hidden="true">🍵</div>
+          <h3 class="menu-card-name">ชาอู่หลง ดอยผา</h3>
+          <p class="menu-card-desc">
+            ชาอู่หลงจากไร่บนดอยสูงในเชียงราย
+            มีกลิ่นหอมละมุนของดอกไม้ และรสชาติที่สะอาดในปาก
+          </p>
+          <div class="menu-card-footer">
+            <span class="menu-card-price">฿70</span>
+            <span class="menu-card-tag">Tea</span>
+          </div>
+        </article>
+
+        <article class="menu-card" role="listitem">
+          <div class="menu-card-icon" aria-hidden="true">🥛</div>
+          <h3 class="menu-card-name">นมสดเชียงใหม่</h3>
+          <p class="menu-card-desc">
+            ลาเต้ด้วยนมโคสดจากเชียงใหม่ หนักครีมนุ่มลิ้น
+            เข้ากันได้ดีกับกาแฟคั่วเข้มของเรา
+          </p>
+          <div class="menu-card-footer">
+            <span class="menu-card-price">฿80</span>
+            <span class="menu-card-tag">Latte</span>
+          </div>
+        </article>
+
+        <article class="menu-card" role="listitem">
+          <div class="menu-card-icon" aria-hidden="true">🍫</div>
+          <h3 class="menu-card-name">ช็อกโกแลตร้อน</h3>
+          <p class="menu-card-desc">
+            ผงโกโก้แท้ 100% จากประเทศเบลเยียม
+            ละลายกับนมสดอุ่น ได้ความเข้มข้นที่ไม่เหมือนใคร
+          </p>
+          <div class="menu-card-footer">
+            <span class="menu-card-price">฿75</span>
+            <span class="menu-card-tag">Hot</span>
+          </div>
+        </article>
+
+        <article class="menu-card" role="listitem">
+          <div class="menu-card-icon" aria-hidden="true">🥐</div>
+          <h3 class="menu-card-name">ครัวซองต์เนย</h3>
+          <p class="menu-card-desc">
+            อบสดใหม่ทุกเช้าจากเตาของเรา
+            กรอบนอก นุ่มใน เนยหอม กินคู่กับกาแฟได้เลย
+          </p>
+          <div class="menu-card-footer">
+            <span class="menu-card-price">฿55</span>
+            <span class="menu-card-tag">Bakery</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ATMOSPHERE -->
+    <section class="atmosphere" id="atmosphere" aria-label="บรรยากาศร้าน">
+      <div class="atmosphere-image">
+        <img
+          src="https://picsum.photos/seed/cozy-cafe-interior/1600/700"
+          alt="บรรยากาศภายในร้านกาแฟ ของสุรินทร์ — อบอุ่นและเงียบสงบ"
+          loading="lazy"
+        >
+      </div>
+      <div class="atmosphere-overlay">
+        <div class="atmosphere-text fade-up">
+          <p class="atmosphere-quote">
+            "สถานที่ที่เวลา<br>หยุดนิ่ง ได้ยิน<br>แค่เสียงกาแฟหยด"
+          </p>
+          <p class="atmosphere-credit">— ลูกค้าประจำ ตั้งแต่ปีแรก</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CRAFT PROCESS -->
+    <section class="craft" aria-labelledby="craft-heading">
+      <div class="craft-header fade-up">
+        <div class="rule"><span class="t-label">กระบวนการของเรา</span></div>
+        <h2 class="t-display section-heading" id="craft-heading" style="font-size:clamp(1.75rem,3.5vw,2.75rem)">
+          จากไร่สู่แก้ว<br>ทุกขั้นตอนสำคัญ
+        </h2>
+      </div>
+
+      <div class="craft-steps">
+        <div class="craft-step fade-up">
+          <div class="craft-step-num" aria-hidden="true">01</div>
+          <div>
+            <h3 class="craft-step-title">คัดสรรเมล็ดพันธุ์</h3>
+            <p class="craft-step-desc">
+              เราเดินทางไปเยี่ยมไร่กาแฟโดยตรง เลือกเมล็ดที่สุกพอดี
+              จากระดับความสูงที่เหมาะสม เพื่อความหอมที่ดีที่สุด
+            </p>
+          </div>
+        </div>
+
+        <div class="craft-step fade-up">
+          <div class="craft-step-num" aria-hidden="true">02</div>
+          <div>
+            <h3 class="craft-step-title">คั่วสดทุกเช้า</h3>
+            <p class="craft-step-desc">
+              เครื่องคั่วของเราทำงานทุกเช้าตั้งแต่ตี 5
+              เพื่อให้คุณได้กาแฟที่คั่วมาไม่เกิน 48 ชั่วโมงทุกครั้ง
+            </p>
+          </div>
+        </div>
+
+        <div class="craft-step fade-up">
+          <div class="craft-step-num" aria-hidden="true">03</div>
+          <div>
+            <h3 class="craft-step-title">ชงด้วยความตั้งใจ</h3>
+            <p class="craft-step-desc">
+              บาริสต้าของเราผ่านการฝึกอบรมจากผู้เชี่ยวชาญ
+              ทุกแก้วชงด้วยความใส่ใจและความแม่นยำของน้ำหนักและอุณหภูมิ
+            </p>
+          </div>
+        </div>
+
+        <div class="craft-step fade-up">
+          <div class="craft-step-num" aria-hidden="true">04</div>
+          <div>
+            <h3 class="craft-step-title">เสิร์ฟถึงมือคุณ</h3>
+            <p class="craft-step-desc">
+              กาแฟต้องเสิร์ฟในเวลาที่เหมาะสม ไม่ร้อนเกิน ไม่เย็นเกิน
+              เราใส่ใจทุกรายละเอียดจนถึงมือคุณ
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="reviews" aria-labelledby="reviews-heading">
+      <div class="testimonials-inner">
+        <div class="testimonials-header fade-up">
+          <div class="rule"><span class="t-label">เสียงจากลูกค้า</span></div>
+          <h2 class="t-display section-heading" id="reviews-heading" style="font-size:clamp(1.75rem,3.5vw,2.75rem)">
+            ทำไมพวกเขา<br>ถึงกลับมาเสมอ
+          </h2>
+        </div>
+
+        <div class="review-grid">
+
+          <article class="review-card fade-up" aria-label="รีวิวจาก มินตรา">
+            <div class="review-stars" aria-label="5 ดาว">
+              <div class="star"></div><div class="star"></div><div class="star"></div>
+              <div class="star"></div><div class="star"></div>
+            </div>
+            <p class="review-text">
+              "มาทุกเช้าก่อนไปทำงานมา 3 ปีแล้ว ยังไม่เคยผิดหวังเลย
+              กาแฟที่นี่มีเอกลักษณ์ที่ไม่เหมือนที่ไหน รสชาติสม่ำเสมอทุกวัน"
+            </p>
+            <div class="review-author">
+              <div class="review-avatar" aria-hidden="true">ม</div>
+              <div>
+                <div class="review-author-name">มินตรา สุขใจ</div>
+                <div class="review-author-meta">ลูกค้าประจำ · สุรินทร์</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="review-card fade-up" aria-label="รีวิวจาก ทักษิณ">
+            <div class="review-stars" aria-label="5 ดาว">
+              <div class="star"></div><div class="star"></div><div class="star"></div>
+              <div class="star"></div><div class="star"></div>
+            </div>
+            <p class="review-text">
+              "แวะมาระหว่างทางไปภูเขา ติดใจมากจนต้องแวะกลับมาอีกครั้ง
+              Cold Brew ที่นี่ดีกว่าหลายร้านในกรุงเทพอีก"
+            </p>
+            <div class="review-author">
+              <div class="review-avatar" aria-hidden="true">ท</div>
+              <div>
+                <div class="review-author-name">ทักษิณ วรรณชัย</div>
+                <div class="review-author-meta">นักท่องเที่ยว · กรุงเทพฯ</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="review-card fade-up" aria-label="รีวิวจาก ปวีณา">
+            <div class="review-stars" aria-label="5 ดาว">
+              <div class="star"></div><div class="star"></div><div class="star"></div>
+              <div class="star"></div><div class="star"></div>
+            </div>
+            <p class="review-text">
+              "บรรยากาศดีมาก เงียบสงบ ทำงานได้สบาย WiFi ดี
+              และที่สำคัญ กาแฟอร่อยมาก พนักงานก็ใจดีทุกคน"
+            </p>
+            <div class="review-author">
+              <div class="review-avatar" aria-hidden="true">ป</div>
+              <div>
+                <div class="review-author-name">ปวีณา รักดี</div>
+                <div class="review-author-meta">Freelancer · สุรินทร์</div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="visit" aria-labelledby="cta-heading">
+      <div class="cta-ornament" aria-hidden="true">
+        <div class="cta-ornament-line"></div>
+        <div class="cta-ornament-icon">☕</div>
+        <div class="cta-ornament-line"></div>
+      </div>
+
+      <h2 class="t-display cta-heading fade-up" id="cta-heading">
+        มาดื่มกาแฟ<br>กับเราวันนี้
+      </h2>
+      <p class="cta-subheading fade-up">
+        ไม่ว่าจะมาคนเดียวหรือกับเพื่อน นั่งทำงานหรือแค่ผ่อนคลาย
+        ร้านของเราพร้อมต้อนรับคุณทุกวัน
+      </p>
+
+      <div class="cta-actions fade-up">
+        <a href="tel:+66441234567" class="btn-primary">
+          โทรสำรองที่นั่ง
+        </a>
+        <a href="#story" class="btn-ghost">
+          ดูรูปบรรยากาศ
+        </a>
+      </div>
+
+      <div class="cta-info fade-up" aria-label="ข้อมูลติดต่อ">
+        <div class="cta-info-item">
+          <span class="cta-info-label">เวลาเปิด-ปิด</span>
+          <span class="cta-info-value">07:00 – 20:00<br>ทุกวัน</span>
+        </div>
+        <div class="cta-info-item">
+          <span class="cta-info-label">โทรศัพท์</span>
+          <span class="cta-info-value">044 123 4567</span>
+        </div>
+        <div class="cta-info-item">
+          <span class="cta-info-label">LINE Official</span>
+          <span class="cta-info-value">@surincoffee</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION BAR -->
+    <div class="location-bar" aria-label="ที่ตั้งร้าน">
+      <div class="location-inner">
+        <div class="location-address">
+          <div class="location-pin" aria-hidden="true">📍</div>
+          <div>
+            <div class="location-text-label">ที่อยู่</div>
+            <div class="location-text-addr">
+              123 ถนนสุรินทร์-ช่องจอม ตำบลในเมือง<br>
+              อำเภอเมืองสุรินทร์ จังหวัดสุรินทร์ 32000
+            </div>
+          </div>
+        </div>
+
+        <div class="location-hours" aria-label="ตารางเวลา">
+          <div class="location-hours-item">
+            <span class="t-label">จันทร์ – ศุกร์</span>
+            <span class="t-body" style="font-size:0.875rem;color:var(--cream-dim)">07:00 – 20:00</span>
+          </div>
+          <div class="location-hours-item">
+            <span class="t-label">เสาร์ – อาทิตย์</span>
+            <span class="t-body" style="font-size:0.875rem;color:var(--cream-dim)">07:30 – 21:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">ร้านกาแฟ ของสุรินทร์</div>
+          <p class="footer-brand-tagline">
+            กาแฟคั่วสด บรรยากาศอบอุ่น<br>
+            ใจกลางเมืองสุรินทร์ ตั้งแต่ปี 2559
+          </p>
+        </div>
+
+        <nav aria-label="เมนูด่วน">
+          <div class="footer-col-title">เมนูหลัก</div>
+          <ul class="footer-links" role="list">
+            <li><a href="#story">เรื่องราวของเรา</a></li>
+            <li><a href="#menu">เมนูกาแฟ</a></li>
+            <li><a href="#atmosphere">บรรยากาศ</a></li>
+            <li><a href="#reviews">รีวิว</a></li>
+            <li><a href="#visit">ติดต่อเรา</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <div class="footer-col-title">ติดต่อ</div>
+          <ul class="footer-links" role="list">
+            <li><a href="tel:+66441234567">044 123 4567</a></li>
+            <li><a href="https://line.me/ti/p/@surincoffee" aria-label="LINE Official Account">LINE: @surincoffee</a></li>
+            <li><a href="#" aria-label="Facebook ร้านกาแฟ ของสุรินทร์">Facebook</a></li>
+            <li><a href="#" aria-label="Instagram ร้านกาแฟ ของสุรินทร์">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          © 2567 ร้านกาแฟ ของสุรินทร์. สงวนลิขสิทธิ์.
+        </p>
+        <div class="footer-social" aria-label="โซเชียลมีเดีย">
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="LINE">LINE</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // =========================================
+    // Mobile Menu
+    // =========================================
+    function openMenu() {
+      document.getElementById('mobileMenu').classList.add('open');
+      document.getElementById('overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // =========================================
+    // Intersection Observer — fade-up
+    // =========================================
+    (function () {
+      if (!('IntersectionObserver' in window)) return;
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.fade-up').forEach((el, i) => {
+        // stagger children within the same parent
+        el.style.transitionDelay = (i % 4) * 0.08 + 's';
+        io.observe(el);
+      });
+    })();
+
+    // =========================================
+    // Nav shrink on scroll
+    // =========================================
+    (function () {
+      const nav = document.querySelector('.nav');
+      let ticking = false;
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            if (window.scrollY > 60) {
+              nav.style.padding = '0.625rem 1.25rem';
+            } else {
+              nav.style.padding = '';
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+
+    // =========================================
+    // Keyboard: close menu on Escape
+    // =========================================
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  </script>
+</body>
+</html>

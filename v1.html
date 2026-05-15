@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ร้านกาแฟ ของสุรินทร์ — กาแฟแห่งความทรงจำ</title>
+  <meta name="description" content="ร้านกาแฟ ของสุรินทร์ — กาแฟคั่วบดสดใหม่ทุกวัน บรรยากาศอบอุ่น ใจกลางเมืองสุรินทร์">
+  <style>
+    /* ============================================
+       DESIGN SYSTEM — Variant 1
+       Dark editorial / Warm espresso palette
+       Serif typography / Full-bleed hero
+    ============================================ */
+    :root {
+      --color-espresso:   #1a0e08;
+      --color-roast:      #2e1a0f;
+      --color-bark:       #5c3a22;
+      --color-caramel:    #c8922a;
+      --color-honey:      #e8b86d;
+      --color-cream:      #faf5ed;
+      --color-parchment:  #f2e8d9;
+      --color-mist:       #e8ddd0;
+      --color-ink:        #1a0e08;
+      --color-warm-mid:   #7a5c42;
+
+      --font-display: Georgia, 'Times New Roman', serif;
+      --font-body:    'Helvetica Neue', Arial, sans-serif;
+
+      --space-xs:  0.5rem;
+      --space-sm:  1rem;
+      --space-md:  2rem;
+      --space-lg:  4rem;
+      --space-xl:  6rem;
+      --space-2xl: 10rem;
+
+      --radius-sm: 4px;
+      --radius-md: 12px;
+      --radius-lg: 24px;
+
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-cream);
+      color: var(--color-ink);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* ============================================
+       NAVIGATION
+    ============================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+
+    .nav.scrolled {
+      background: rgba(26, 14, 8, 0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 0 rgba(200, 146, 42, 0.15);
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .nav-logo-th {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--color-honey);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-logo-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-warm-mid);
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: var(--space-md);
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-mist);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--color-honey);
+    }
+
+    .nav-cta {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.4rem;
+      background: var(--color-caramel);
+      color: var(--color-espresso);
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .nav-cta:hover {
+      background: var(--color-honey);
+      transform: translateY(-1px);
+    }
+
+    .nav-hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--color-mist);
+      transition: var(--transition);
+    }
+
+    /* ============================================
+       HERO — Full-bleed, dark, centered
+    ============================================ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://picsum.photos/seed/surin-coffee-espresso/1600/1000');
+      background-size: cover;
+      background-position: center 40%;
+      transform: scale(1.05);
+      transition: transform 8s ease-out;
+    }
+
+    .hero-bg.loaded {
+      transform: scale(1);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(26, 14, 8, 0.82) 0%,
+        rgba(26, 14, 8, 0.60) 50%,
+        rgba(46, 26, 15, 0.88) 100%
+      );
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 var(--space-md);
+      max-width: 860px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--color-caramel);
+      border: 1px solid rgba(200, 146, 42, 0.35);
+      padding: 0.4rem 1.1rem;
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 8vw, 6rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--color-cream);
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--color-honey);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--color-mist);
+      opacity: 0.85;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      background: var(--color-caramel);
+      color: var(--color-espresso);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-honey);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200, 146, 42, 0.3);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-mist);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .btn-ghost:hover {
+      color: var(--color-honey);
+    }
+
+    .btn-ghost svg {
+      transition: transform var(--transition);
+    }
+
+    .btn-ghost:hover svg {
+      transform: translateY(2px);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(250, 245, 237, 0.45);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(200, 146, 42, 0.5), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50%       { opacity: 1; }
+    }
+
+    /* ============================================
+       MARQUEE STRIP
+    ============================================ */
+    .marquee-strip {
+      background: var(--color-caramel);
+      padding: 0.75rem 0;
+      overflow: hidden;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      width: max-content;
+      animation: marqueeScroll 28s linear infinite;
+    }
+
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0 2rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-espresso);
+      white-space: nowrap;
+    }
+
+    .marquee-dot {
+      width: 4px;
+      height: 4px;
+      background: var(--color-espresso);
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    @keyframes marqueeScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ============================================
+       ABOUT SECTION
+    ============================================ */
+    .about {
+      padding: var(--space-xl) var(--space-md);
+      background: var(--color-cream);
+    }
+
+    .about-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .about-image-wrap {
+      position: relative;
+    }
+
+    .about-image-main {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+
+    .about-image-accent {
+      display: none;
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: 1.5rem;
+      background: var(--color-espresso);
+      color: var(--color-honey);
+      padding: 1.2rem 1.5rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(26, 14, 8, 0.25);
+    }
+
+    .about-badge-num {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      line-height: 1;
+      display: block;
+    }
+
+    .about-badge-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-warm-mid);
+      display: block;
+      margin-top: 4px;
+    }
+
+    .about-text {
+      padding-top: 2rem;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-caramel);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--color-caramel);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--color-espresso);
+      margin-bottom: 1.2rem;
+    }
+
+    .section-body {
+      font-size: 1rem;
+      color: var(--color-warm-mid);
+      line-height: 1.85;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-mist);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--color-espresso);
+      display: block;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-warm-mid);
+      margin-top: 0.35rem;
+    }
+
+    /* ============================================
+       MENU SECTION
+    ============================================ */
+    .menu {
+      padding: var(--space-xl) var(--space-md);
+      background: var(--color-espresso);
+    }
+
+    .menu-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .menu-header {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    .menu-header .section-label {
+      justify-content: center;
+    }
+
+    .menu-header .section-label::before {
+      display: none;
+    }
+
+    .menu-header .section-title {
+      color: var(--color-cream);
+    }
+
+    .menu-header .section-body {
+      color: rgba(250, 245, 237, 0.55);
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .menu-card {
+      background: var(--color-roast);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .menu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .menu-card-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+
+    .menu-card-body {
+      padding: 1.5rem;
+    }
+
+    .menu-card-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-caramel);
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-card-name {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--color-cream);
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-card-desc {
+      font-size: 0.88rem;
+      color: rgba(250, 245, 237, 0.55);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .menu-card-price {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--color-honey);
+    }
+
+    .menu-card-price span {
+      font-size: 0.7rem;
+      font-family: var(--font-body);
+      color: rgba(250, 245, 237, 0.4);
+      letter-spacing: 0.08em;
+    }
+
+    .menu-footer {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.2rem;
+      border: 1px solid rgba(200, 146, 42, 0.4);
+      color: var(--color-honey);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    }
+
+    .btn-outline:hover {
+      background: rgba(200, 146, 42, 0.1);
+      border-color: var(--color-honey);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================
+       VALUES / WHY US
+    ============================================ */
+    .values {
+      padding: var(--space-xl) var(--space-md);
+      background: var(--color-parchment);
+    }
+
+    .values-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .values-header {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    .values-header .section-label {
+      justify-content: center;
+    }
+
+    .values-header .section-label::before {
+      display: none;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .value-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .value-icon {
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+      background: var(--color-espresso);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .value-icon svg {
+      color: var(--color-honey);
+    }
+
+    .value-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--color-espresso);
+      margin-bottom: 0.4rem;
+    }
+
+    .value-text {
+      font-size: 0.9rem;
+      color: var(--color-warm-mid);
+      line-height: 1.75;
+    }
+
+    /* ============================================
+       TESTIMONIALS
+    ============================================ */
+    .testimonials {
+      padding: var(--space-xl) var(--space-md);
+      background: var(--color-cream);
+    }
+
+    .testimonials-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .testimonials-header {
+      margin-bottom: var(--space-lg);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .testimonial-card {
+      background: var(--color-parchment);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      border-left: 3px solid var(--color-caramel);
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-stars svg {
+      color: var(--color-caramel);
+    }
+
+    .testimonial-quote {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--color-espresso);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-bark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--color-honey);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .testimonial-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-espresso);
+    }
+
+    .testimonial-meta {
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--color-warm-mid);
+    }
+
+    /* ============================================
+       GALLERY STRIP
+    ============================================ */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      height: 220px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    /* ============================================
+       CTA SECTION
+    ============================================ */
+    .cta {
+      padding: var(--space-xl) var(--space-md);
+      background: var(--color-roast);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(200, 146, 42, 0.08) 0%, transparent 70%);
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .cta-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-caramel);
+      margin-bottom: 1.2rem;
+    }
+
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--color-cream);
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .cta-subtitle {
+      font-size: 1rem;
+      color: rgba(250, 245, 237, 0.55);
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .cta-hours {
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(250, 245, 237, 0.1);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .hours-item {
+      text-align: center;
+    }
+
+    .hours-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-caramel);
+      margin-bottom: 0.35rem;
+    }
+
+    .hours-value {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--color-cream);
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer {
+      background: var(--color-espresso);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid rgba(250, 245, 237, 0.08);
+      margin-bottom: var(--space-md);
+    }
+
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--color-honey);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-brand-desc {
+      font-size: 0.88rem;
+      color: rgba(250, 245, 237, 0.45);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer-col-title {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-caramel);
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-links a {
+      font-size: 0.88rem;
+      color: rgba(250, 245, 237, 0.5);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--color-honey);
+    }
+
+    .footer-address {
+      font-size: 0.88rem;
+      color: rgba(250, 245, 237, 0.5);
+      line-height: 1.75;
+      font-style: normal;
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: rgba(250, 245, 237, 0.28);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-social a {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(250, 245, 237, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(250, 245, 237, 0.4);
+      text-decoration: none;
+      transition: border-color var(--transition), color var(--transition);
+    }
+
+    .footer-social a:hover {
+      border-color: var(--color-caramel);
+      color: var(--color-honey);
+    }
+
+    /* ============================================
+       RESPONSIVE — Tablet (768px+)
+    ============================================ */
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+
+      .nav-hamburger {
+        display: none;
+      }
+
+      .hero-actions {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .about-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .about-image-accent {
+        display: block;
+        position: absolute;
+        bottom: -1.5rem;
+        left: -1.5rem;
+        width: 42%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: var(--radius-md);
+        border: 6px solid var(--color-cream);
+      }
+
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cta-actions {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .cta-hours {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .footer-top {
+        grid-template-columns: 2fr 1fr 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+
+      .gallery {
+        height: 320px;
+      }
+    }
+
+    /* ============================================
+       RESPONSIVE — Desktop (1280px+)
+    ============================================ */
+    @media (min-width: 1280px) {
+      .about-inner {
+        gap: var(--space-xl);
+      }
+
+      .menu-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .menu-card {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-card-img {
+        aspect-ratio: 3/4;
+      }
+
+      .values-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .testimonials-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .gallery {
+        height: 400px;
+      }
+
+      .about-text {
+        padding-top: 0;
+      }
+    }
+
+    /* ============================================
+       MOBILE MENU
+    ============================================ */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--color-espresso);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--color-cream);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .mobile-menu a:hover {
+      color: var(--color-honey);
+    }
+
+    .mobile-menu-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--color-mist);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* ============================================
+       FADE-IN ANIMATION
+    ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <a href="#" class="nav-logo" aria-label="ร้านกาแฟ ของสุรินทร์ — หน้าแรก">
+      <span class="nav-logo-th">ของสุรินทร์</span>
+      <span class="nav-logo-sub">Surin Coffee</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#about">เรื่องราว</a></li>
+      <li><a href="#menu">เมนู</a></li>
+      <li><a href="#values">คุณค่า</a></li>
+      <li><a href="#visit">มาเยี่ยม</a></li>
+    </ul>
+    <a href="#visit" class="nav-cta" style="display:none;" id="nav-cta-desktop">สั่งเลย</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="เปิดเมนู" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation menu">
+    <button class="mobile-menu-close" id="mobile-close" aria-label="ปิดเมนู">✕</button>
+    <a href="#about" class="mobile-nav-link">เรื่องราว</a>
+    <a href="#menu" class="mobile-nav-link">เมนู</a>
+    <a href="#values" class="mobile-nav-link">คุณค่า</a>
+    <a href="#visit" class="mobile-nav-link">มาเยี่ยม</a>
+  </div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-label="Hero section">
+      <div class="hero-bg" id="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-grain"></div>
+      <div class="hero-content">
+        <span class="hero-eyebrow">เปิดให้บริการตั้งแต่ปี 2558</span>
+        <h1 class="hero-title">
+          กาแฟที่ดี<br>
+          เริ่มจาก<em>หัวใจ</em>
+        </h1>
+        <p class="hero-subtitle">
+          ทุกแก้วที่เราชง คือความตั้งใจที่เราคั่วสด<br>
+          จากเมล็ดพันธุ์ดีที่คัดสรรมาเพื่อคุณโดยเฉพาะ
+        </p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn-primary">ดูเมนูของเรา</a>
+          <a href="#about" class="btn-ghost">
+            รู้จักเราเพิ่มเติม
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M7 2v10M2 7l5 5 5-5"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-scroll" aria-hidden="true">
+        <div class="hero-scroll-line"></div>
+        <span>เลื่อนลง</span>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-strip" aria-hidden="true">
+      <div class="marquee-track">
+        <!-- duplicated for seamless loop -->
+        <div class="marquee-item">Single Origin<div class="marquee-dot"></div></div>
+        <div class="marquee-item">คั่วบดสดทุกเช้า<div class="marquee-dot"></div></div>
+        <div class="marquee-item">Specialty Coffee<div class="marquee-dot"></div></div>
+        <div class="marquee-item">เมล็ดไทยพรีเมียม<div class="marquee-dot"></div></div>
+        <div class="marquee-item">บรรยากาศอบอุ่น<div class="marquee-dot"></div></div>
+        <div class="marquee-item">Artisan Roast<div class="marquee-dot"></div></div>
+        <div class="marquee-item">Cold Brew &amp; Espresso<div class="marquee-dot"></div></div>
+        <div class="marquee-item">ตั้งแต่เช้ายันเย็น<div class="marquee-dot"></div></div>
+        <div class="marquee-item">Single Origin<div class="marquee-dot"></div></div>
+        <div class="marquee-item">คั่วบดสดทุกเช้า<div class="marquee-dot"></div></div>
+        <div class="marquee-item">Specialty Coffee<div class="marquee-dot"></div></div>
+        <div class="marquee-item">เมล็ดไทยพรีเมียม<div class="marquee-dot"></div></div>
+        <div class="marquee-item">บรรยากาศอบอุ่น<div class="marquee-dot"></div></div>
+        <div class="marquee-item">Artisan Roast<div class="marquee-dot"></div></div>
+        <div class="marquee-item">Cold Brew &amp; Espresso<div class="marquee-dot"></div></div>
+        <div class="marquee-item">ตั้งแต่เช้ายันเย็น<div class="marquee-dot"></div></div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="about" id="about" aria-labelledby="about-heading">
+      <div class="about-inner">
+        <div class="about-image-wrap reveal">
+          <img
+            class="about-image-main"
+            src="https://picsum.photos/seed/surin-cafe-interior/800/600"
+            alt="ภายในร้านกาแฟ ของสุรินทร์ บรรยากาศอบอุ่น"
+            loading="lazy"
+          />
+          <img
+            class="about-image-accent"
+            src="https://picsum.photos/seed/coffee-pour-over/400/400"
+            alt="การชงกาแฟแบบ pour-over"
+            loading="lazy"
+          />
+          <div class="about-badge">
+            <span class="about-badge-num">10+</span>
+            <span class="about-badge-label">ปีแห่งประสบการณ์</span>
+          </div>
+        </div>
+        <div class="about-text reveal">
+          <div class="section-label">เรื่องราวของเรา</div>
+          <h2 class="section-title" id="about-heading">
+            จากสวนกาแฟ<br>สู่มือของคุณ
+          </h2>
+          <p class="section-body">
+            ร้านกาแฟ ของสุรินทร์ เกิดจากความรักในกาแฟและความปรารถนาที่จะแบ่งปัน
+            ทุกเมล็ดกาแฟที่เราใช้คัดสรรมาจากสวนกาแฟในภาคเหนือของไทย
+            ที่เราเดินทางไปเลือกด้วยตนเอง
+          </p>
+          <p class="section-body">
+            เราเชื่อว่ากาแฟดีไม่ได้วัดแค่รสชาติ
+            แต่วัดที่ความสัมพันธ์ระหว่างผู้คน —
+            ชาวสวน บาริสต้า และคุณ ที่มาร่วมกันสร้างช่วงเวลาดี ๆ
+          </p>
+          <div class="about-stats">
+            <div class="stat-item">
+              <span class="stat-number">40+</span>
+              <div class="stat-label">เมนูเครื่องดื่ม</div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">5</span>
+              <div class="stat-label">แหล่งผลิตคัดสรร</div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">3k+</span>
+              <div class="stat-label">ลูกค้าประจำต่อเดือน</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="menu" id="menu" aria-labelledby="menu-heading">
+      <div class="menu-inner">
+        <div class="menu-header reveal">
+          <div class="section-label">เมนูแนะนำ</div>
+          <h2 class="section-title" id="menu-heading">
+            ต้องลองซักครั้ง
+          </h2>
+          <p class="section-body">
+            คัดสรรสี่เมนูที่บาริสต้าของเราภาคภูมิใจที่สุด
+          </p>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-card reveal">
+            <img
+              class="menu-card-img"
+              src="https://picsum.photos/seed/espresso-dark-roast/600/800"
+              alt="Surin Signature Espresso"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">Signature</div>
+              <h3 class="menu-card-name">Surin Espresso</h3>
+              <p class="menu-card-desc">
+                เอสเปรสโซ่ single origin จากดอยช้าง คั่วกลางเข้ม มีกลิ่นดาร์กช็อกโกแลตและคาราเมล
+              </p>
+              <div class="menu-card-price">฿65 <span>/ shot</span></div>
+            </div>
+          </article>
+          <article class="menu-card reveal">
+            <img
+              class="menu-card-img"
+              src="https://picsum.photos/seed/latte-art-cafe/600/800"
+              alt="Honey Oat Latte"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">Best Seller</div>
+              <h3 class="menu-card-name">Honey Oat Latte</h3>
+              <p class="menu-card-desc">
+                ลาเต้นมข้าวโอ๊ตสูตรพิเศษ ผสมน้ำผึ้งธรรมชาติจากสวนสุรินทร์ หอมหวานกำลังดี
+              </p>
+              <div class="menu-card-price">฿95 <span>/ แก้ว</span></div>
+            </div>
+          </article>
+          <article class="menu-card reveal">
+            <img
+              class="menu-card-img"
+              src="https://picsum.photos/seed/cold-brew-iced/600/800"
+              alt="Thai Cold Brew"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">Seasonal</div>
+              <h3 class="menu-card-name">Thai Cold Brew</h3>
+              <p class="menu-card-desc">
+                โคลด์บรูว์แช่นาน 18 ชั่วโมง เสิร์ฟพร้อมนมข้น สไตล์กาแฟไทยดั้งเดิมที่ทันสมัย
+              </p>
+              <div class="menu-card-price">฿85 <span>/ แก้ว</span></div>
+            </div>
+          </article>
+          <article class="menu-card reveal">
+            <img
+              class="menu-card-img"
+              src="https://picsum.photos/seed/matcha-coffee-blend/600/800"
+              alt="Surin Aura Blend"
+              loading="lazy"
+            />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">New Arrival</div>
+              <h3 class="menu-card-name">Aura Blend</h3>
+              <p class="menu-card-desc">
+                กาแฟผสมมัทฉะเกรดพรีเมียมจากญี่ปุ่น สมดุลระหว่างความขมของกาแฟและความนุ่มของชา
+              </p>
+              <div class="menu-card-price">฿110 <span>/ แก้ว</span></div>
+            </div>
+          </article>
+        </div>
+        <div class="menu-footer reveal">
+          <a href="#visit" class="btn-outline">ดูเมนูทั้งหมด →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="values" id="values" aria-labelledby="values-heading">
+      <div class="values-inner">
+        <div class="values-header reveal">
+          <div class="section-label">ทำไมต้องเลือกเรา</div>
+          <h2 class="section-title" id="values-heading">
+            มากกว่าแค่กาแฟ
+          </h2>
+        </div>
+        <div class="values-grid">
+          <div class="value-item reveal">
+            <div class="value-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="value-title">คั่วสดทุกวัน</h3>
+              <p class="value-text">
+                เราคั่วเมล็ดกาแฟทุกเช้าก่อนเปิดร้าน เพื่อให้คุณได้ดื่มกาแฟที่สดที่สุดเสมอ
+              </p>
+            </div>
+          </div>
+          <div class="value-item reveal">
+            <div class="value-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="value-title">ใส่ใจทุกรายละเอียด</h3>
+              <p class="value-text">
+                ตั้งแต่อุณหภูมิน้ำ ไปจนถึงลาย latte art บาริสต้าของเราฝึกฝนมาเพื่อความสมบูรณ์แบบ
+              </p>
+            </div>
+          </div>
+          <div class="value-item reveal">
+            <div class="value-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="value-title">บรรยากาศบ้าน ๆ</h3>
+              <p class="value-text">
+                ออกแบบมาเพื่อให้คุณรู้สึกผ่อนคลาย จะมาคนเดียวหรือมากับเพื่อนก็สบายใจเท่ากัน
+              </p>
+            </div>
+          </div>
+          <div class="value-item reveal">
+            <div class="value-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 8v4l3 3"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="value-title">ซอร์สจากชุมชน</h3>
+              <p class="value-text">
+                เราสนับสนุนชาวสวนกาแฟไทยโดยตรง จ่ายราคาที่ยุติธรรมและพัฒนาคุณภาพร่วมกัน
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="testimonials" aria-labelledby="testimonials-heading">
+      <div class="testimonials-inner">
+        <div class="testimonials-header reveal">
+          <div class="section-label">เสียงจากลูกค้า</div>
+          <h2 class="section-title" id="testimonials-heading">
+            พวกเขาบอกว่าอย่างนี้
+          </h2>
+        </div>
+        <div class="testimonials-grid">
+          <blockquote class="testimonial-card reveal">
+            <div class="testimonial-stars" aria-label="5 ดาว">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="testimonial-quote">
+              "กาแฟที่นี่ทำให้เช้าวันจันทร์ดูไม่เลวร้ายเลย
+              Honey Oat Latte เป็นเมนูที่ฉันสั่งทุกวันเลยค่ะ"
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" aria-hidden="true">น</div>
+              <div>
+                <div class="testimonial-name">นภัสสร วงษ์ไพบูลย์</div>
+                <div class="testimonial-meta">ลูกค้าประจำ · สุรินทร์</div>
+              </div>
+            </div>
+          </blockquote>
+          <blockquote class="testimonial-card reveal">
+            <div class="testimonial-stars" aria-label="5 ดาว">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="testimonial-quote">
+              "ผมชอบที่นี่เพราะบาริสต้าเขาอธิบายที่มาของกาแฟได้ดีมาก
+              รู้สึกว่าดื่มกาแฟแล้วได้เรียนรู้ด้วย"
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" aria-hidden="true">ก</div>
+              <div>
+                <div class="testimonial-name">กิตติพัฒน์ อรรถสิทธิ์</div>
+                <div class="testimonial-meta">นักเดินทาง · กรุงเทพฯ</div>
+              </div>
+            </div>
+          </blockquote>
+          <blockquote class="testimonial-card reveal">
+            <div class="testimonial-stars" aria-label="5 ดาว">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="testimonial-quote">
+              "Thai Cold Brew ที่นี่อร่อยที่สุดที่เคยดื่มมา
+              กาแฟหอมชัดมาก ไม่ขมเกิน สมดุลมากเลยค่ะ"
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar" aria-hidden="true">ป</div>
+              <div>
+                <div class="testimonial-name">ปาณิสรา ชัยธนวัฒน์</div>
+                <div class="testimonial-meta">Food Blogger · เชียงใหม่</div>
+              </div>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <div class="gallery" aria-label="ภาพบรรยากาศร้าน">
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/cafe-atmosphere-1/600/400" alt="บรรยากาศภายในร้าน" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/coffee-latte-art/600/400" alt="Latte art สวยงาม" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/coffee-beans-roast/600/400" alt="เมล็ดกาแฟคั่วสด" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/barista-brewing/600/400" alt="บาริสต้ากำลังชงกาแฟ" loading="lazy">
+      </div>
+    </div>
+
+    <!-- CTA / VISIT -->
+    <section class="cta" id="visit" aria-labelledby="cta-heading">
+      <div class="cta-inner">
+        <div class="cta-eyebrow reveal">มาหาเรา</div>
+        <h2 class="cta-title reveal" id="cta-heading">
+          เริ่มวันดี ๆ<br>กับกาแฟแก้วแรกของคุณ
+        </h2>
+        <p class="cta-subtitle reveal">
+          เยี่ยมชมเราได้ที่ใจกลางเมืองสุรินทร์
+          หรือติดตามเมนูใหม่ ๆ ได้ทางโซเชียลมีเดีย
+        </p>
+        <div class="cta-actions reveal">
+          <a href="tel:+66441234567" class="btn-primary">โทรจองโต๊ะ</a>
+          <a href="#" class="btn-outline">ดูแผนที่</a>
+        </div>
+        <div class="cta-hours reveal">
+          <div class="hours-item">
+            <div class="hours-label">จันทร์ – ศุกร์</div>
+            <div class="hours-value">07:00 – 20:00</div>
+          </div>
+          <div class="hours-item">
+            <div class="hours-label">เสาร์ – อาทิตย์</div>
+            <div class="hours-value">08:00 – 21:00</div>
+          </div>
+          <div class="hours-item">
+            <div class="hours-label">ที่อยู่</div>
+            <div class="hours-value" style="font-size:0.9rem;">ถ.สุรินทร์-ปราสาท อ.เมือง สุรินทร์</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-brand-name">ร้านกาแฟ ของสุรินทร์</div>
+          <p class="footer-brand-desc">
+            กาแฟคั่วบดสด บรรยากาศอบอุ่น<br>
+            ใจกลางเมืองสุรินทร์ ตั้งแต่ปี 2558
+          </p>
+        </div>
+        <div>
+          <div class="footer-col-title">เมนู</div>
+          <ul class="footer-links" role="list">
+            <li><a href="#">Espresso Bar</a></li>
+            <li><a href="#">Cold Brew</a></li>
+            <li><a href="#">Non-Coffee</a></li>
+            <li><a href="#">เบเกอรี่</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">ติดต่อ</div>
+          <address class="footer-address">
+            ถ.สุรินทร์-ปราสาท<br>
+            อ.เมือง จ.สุรินทร์ 32000<br>
+            <br>
+            <a href="tel:+66441234567" style="color:inherit;text-decoration:none;">044-123-4567</a><br>
+            <a href="mailto:hello@surincoffee.th" style="color:inherit;text-decoration:none;">hello@surincoffee.th</a>
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 ร้านกาแฟ ของสุรินทร์. สงวนลิขสิทธิ์</p>
+        <div class="footer-social" aria-label="Social media links">
+          <a href="#" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Line">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 11.5C21 7.36 16.97 4 12 4S3 7.36 3 11.5c0 3.72 3.3 6.83 7.76 7.42.3.07.72.2.82.47.09.24.06.62.03.86l-.13.8c-.04.24-.18.93.82.51s5.4-3.18 7.37-5.44A6.64 6.64 0 0 0 21 11.5z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ============================================
+    // NAV SCROLL BEHAVIOR
+    // ============================================
+    const nav = document.getElementById('nav');
+    const navCtaDesktop = document.getElementById('nav-cta-desktop');
+
+    const onScroll = () => {
+      if (window.scrollY > 60) {
+        nav.classList.add('scrolled');
+        if (navCtaDesktop) navCtaDesktop.style.display = 'inline-block';
+      } else {
+        nav.classList.remove('scrolled');
+        if (navCtaDesktop) navCtaDesktop.style.display = 'none';
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // ============================================
+    // MOBILE MENU
+    // ============================================
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+    const openMenu = () => {
+      mobileMenu.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeMenu = () => {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    };
+
+    hamburger.addEventListener('click', openMenu);
+    mobileClose.addEventListener('click', closeMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    // ============================================
+    // HERO IMAGE PARALLAX / LOAD
+    // ============================================
+    const heroBg = document.getElementById('hero-bg');
+    const heroImg = new Image();
+    heroImg.src = 'https://picsum.photos/seed/surin-coffee-espresso/1600/1000';
+    heroImg.onload = () => {
+      heroBg.style.backgroundImage = `url('${heroImg.src}')`;
+      heroBg.classList.add('loaded');
+    };
+
+    // Subtle parallax on hero background
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      if (scrolled < window.innerHeight) {
+        heroBg.style.transform = `scale(1) translateY(${scrolled * 0.25}px)`;
+      }
+    }, { passive: true });
+
+    // ============================================
+    // REVEAL ON SCROLL
+    // ============================================
+    const reveals = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Stagger children within parent containers
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    // Add stagger delays to grid children
+    document.querySelectorAll('.menu-grid .reveal, .values-grid .reveal, .testimonials-grid .reveal').forEach((el, i) => {
+      el.dataset.delay = (i % 4) * 90;
+    });
+
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // ============================================
+    // SMOOTH ANCHOR SCROLL (offset for fixed nav)
+    // ============================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        const offset = nav.offsetHeight + 16;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>

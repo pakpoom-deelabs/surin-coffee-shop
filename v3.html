@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ร้านกาแฟ ของสุรินทร์ — กาแฟดิบ รสชาติแท้</title>
+  <meta name="description" content="ร้านกาแฟของสุรินทร์ คัดสรรเมล็ดกาแฟจากดอยสูง คั่วสดทุกวัน เสิร์ฟด้วยฝีมือบาริสต้าที่หลงใหลในกาแฟ">
+  <style>
+    /* ─── Design Tokens ─────────────────────────────────────── */
+    :root {
+      --ink:       #0e0a05;
+      --espresso:  #1c1208;
+      --roast:     #3b2010;
+      --amber:     #c06c1a;
+      --gold:      #e8a84c;
+      --cream:     #f4ead8;
+      --parchment: #faf5ec;
+      --white:     #fffdf9;
+      --mist:      #c9b89a;
+
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+      --gap-xs: 0.5rem;
+      --gap-sm: 1rem;
+      --gap-md: 2rem;
+      --gap-lg: 4rem;
+      --gap-xl: 7rem;
+
+      --max-w: 1320px;
+      --radius: 2px;
+    }
+
+    /* ─── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--sans);
+      background: var(--espresso);
+      color: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ─── Utility ────────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: 1.25rem;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+    }
+    .overline {
+      font-family: var(--sans);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    /* ─── Nav ────────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 0;
+      mix-blend-mode: normal;
+    }
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav__logo {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+    .nav__logo span {
+      display: block;
+      font-style: normal;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mist);
+    }
+    .nav__links {
+      display: none;
+      gap: 2.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mist);
+    }
+    .nav__links a:hover { color: var(--cream); }
+    .nav__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      border: 1px solid var(--amber);
+      padding: 0.5rem 1rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav__cta:hover { background: var(--amber); color: var(--ink); }
+
+    @media (min-width: 768px) {
+      .nav__links { display: flex; }
+    }
+
+    /* ─── Hero ───────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero__bg img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      filter: brightness(0.28) sepia(0.4);
+    }
+    .hero__bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(14,10,5,0.6) 0%,
+        rgba(14,10,5,0.2) 50%,
+        rgba(14,10,5,0.85) 100%
+      );
+    }
+    .hero__content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-top: 6rem;
+      padding-bottom: 3rem;
+    }
+    .hero__tag {
+      margin-bottom: 1.5rem;
+    }
+    .hero__headline {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 10vw, 8rem);
+      font-weight: 400;
+      line-height: 0.92;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+    }
+    .hero__headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero__sub {
+      margin-top: 2rem;
+      max-width: 38ch;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--mist);
+    }
+    .hero__actions {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2rem;
+      background: var(--amber);
+      color: var(--ink);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--gold); transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2rem;
+      border: 1px solid rgba(244,234,216,0.3);
+      color: var(--cream);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--cream); background: rgba(244,234,216,0.06); }
+
+    .hero__scroll {
+      position: relative;
+      z-index: 1;
+      padding: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--mist);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .hero__scroll::before {
+      content: '';
+      width: 2.5rem;
+      height: 1px;
+      background: var(--mist);
+    }
+
+    @media (min-width: 768px) {
+      .hero__content { justify-content: center; padding-top: 10rem; }
+      .hero__headline { font-size: clamp(5rem, 10vw, 9rem); }
+    }
+
+    /* ─── Ticker ─────────────────────────────────────────────── */
+    .ticker {
+      background: var(--amber);
+      overflow: hidden;
+      padding: 0.85rem 0;
+    }
+    .ticker__track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+      animation: ticker 24s linear infinite;
+      width: max-content;
+    }
+    .ticker__track span {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding-right: 3rem;
+    }
+    .ticker__track span::after {
+      content: '◆';
+      font-size: 0.5em;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── Intro ──────────────────────────────────────────────── */
+    .intro {
+      padding: var(--gap-xl) 0;
+      background: var(--parchment);
+      color: var(--ink);
+    }
+    .intro__grid {
+      display: grid;
+      gap: var(--gap-lg);
+    }
+    .intro__number {
+      font-family: var(--serif);
+      font-size: clamp(5rem, 16vw, 12rem);
+      font-weight: 400;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--roast);
+      opacity: 0.18;
+      pointer-events: none;
+      user-select: none;
+    }
+    .intro__text-block { }
+    .intro__heading {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .intro__body {
+      font-size: 1.0625rem;
+      line-height: 1.8;
+      color: var(--roast);
+      max-width: 55ch;
+    }
+    .intro__body + .intro__body { margin-top: 1rem; }
+    .intro__image {
+      position: relative;
+    }
+    .intro__image img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+    .intro__image-caption {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      background: var(--espresso);
+      color: var(--cream);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.75rem;
+    }
+    @media (min-width: 900px) {
+      .intro__grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
+    }
+
+    /* ─── Origin ─────────────────────────────────────────────── */
+    .origin {
+      background: var(--espresso);
+      padding: var(--gap-xl) 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .origin::before {
+      content: 'ORIGIN';
+      position: absolute;
+      top: 50%;
+      left: -2rem;
+      transform: translateY(-50%) rotate(-90deg);
+      transform-origin: center;
+      font-family: var(--serif);
+      font-size: clamp(6rem, 18vw, 14rem);
+      font-weight: 400;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(200,178,154,0.07);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .origin__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: var(--gap-lg);
+    }
+    .origin__image-wrap {
+      position: relative;
+    }
+    .origin__image-wrap img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center;
+    }
+    .origin__badge {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      width: 6rem; height: 6rem;
+      border-radius: 50%;
+      background: var(--amber);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--ink);
+    }
+    .origin__badge strong {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      line-height: 1;
+    }
+    .origin__badge span {
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+    .origin__text { }
+    .origin__overline { margin-bottom: 1.25rem; }
+    .origin__heading {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5vw, 3.75rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      margin-bottom: 1.75rem;
+    }
+    .origin__body {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--mist);
+      max-width: 52ch;
+    }
+    .origin__body + .origin__body { margin-top: 1rem; }
+    .origin__stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 3rem;
+      background: rgba(200,178,154,0.12);
+      border: 1px solid rgba(200,178,154,0.12);
+    }
+    .origin__stat {
+      padding: 1.5rem 1rem;
+      background: var(--espresso);
+      text-align: center;
+    }
+    .origin__stat-num {
+      font-family: var(--serif);
+      font-size: 2.25rem;
+      font-weight: 400;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .origin__stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mist);
+      margin-top: 0.4rem;
+    }
+    @media (min-width: 900px) {
+      .origin__inner {
+        grid-template-columns: 5fr 7fr;
+        align-items: center;
+      }
+    }
+
+    /* ─── Menu Showcase ──────────────────────────────────────── */
+    .menu {
+      background: var(--roast);
+      padding: var(--gap-xl) 0;
+    }
+    .menu__header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: var(--gap-lg);
+    }
+    .menu__heading {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .menu__heading em { font-style: italic; color: var(--gold); }
+    .menu__note {
+      font-size: 0.85rem;
+      color: var(--mist);
+      line-height: 1.6;
+      max-width: 32ch;
+      text-align: right;
+    }
+    .menu__grid {
+      display: grid;
+      gap: 1px;
+      background: rgba(200,178,154,0.1);
+    }
+    .menu__item {
+      background: var(--roast);
+      padding: 2rem 1.5rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: start;
+      gap: 1.25rem;
+      transition: background 0.25s;
+      cursor: default;
+    }
+    .menu__item:hover { background: #4a2a14; }
+    .menu__item-num {
+      font-family: var(--serif);
+      font-size: 0.75rem;
+      color: var(--amber);
+      padding-top: 0.2rem;
+      letter-spacing: 0.05em;
+    }
+    .menu__item-name {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 0.35rem;
+    }
+    .menu__item-desc {
+      font-size: 0.85rem;
+      color: var(--mist);
+      line-height: 1.6;
+    }
+    .menu__item-price {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--gold);
+      white-space: nowrap;
+      text-align: right;
+    }
+    @media (min-width: 768px) {
+      .menu__grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1100px) {
+      .menu__grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    /* ─── Experience ─────────────────────────────────────────── */
+    .experience {
+      background: var(--cream);
+      color: var(--ink);
+      padding: var(--gap-xl) 0;
+      overflow: hidden;
+    }
+    .experience__label {
+      margin-bottom: var(--gap-md);
+    }
+    .experience__headline {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--espresso);
+      margin-bottom: var(--gap-lg);
+      max-width: 14ch;
+    }
+    .experience__headline em { font-style: italic; color: var(--amber); }
+    .experience__mosaic {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+    }
+    .experience__mosaic-item { overflow: hidden; position: relative; }
+    .experience__mosaic-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+    .experience__mosaic-item:hover img { transform: scale(1.04); }
+    .experience__mosaic-item--tall {
+      grid-row: span 2;
+    }
+    .experience__mosaic-item--wide {
+      grid-column: span 2;
+      aspect-ratio: 16/7;
+    }
+    .experience__mosaic-item:not(.experience__mosaic-item--wide) {
+      aspect-ratio: 3/4;
+    }
+    .experience__mosaic-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(14,10,5,0.6) 0%, transparent 50%);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.25rem;
+    }
+    .experience__mosaic-caption {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .experience__pillars {
+      display: grid;
+      gap: 1px;
+      margin-top: 1rem;
+      background: rgba(59,32,16,0.1);
+      border: 1px solid rgba(59,32,16,0.1);
+    }
+    .experience__pillar {
+      background: var(--cream);
+      padding: 2rem 1.5rem;
+    }
+    .experience__pillar-icon {
+      width: 2rem; height: 2rem;
+      margin-bottom: 1rem;
+      color: var(--amber);
+    }
+    .experience__pillar-title {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--espresso);
+      margin-bottom: 0.5rem;
+    }
+    .experience__pillar-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--roast);
+    }
+    @media (min-width: 768px) {
+      .experience__pillars { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ─── Testimonials ───────────────────────────────────────── */
+    .testimonials {
+      background: var(--ink);
+      padding: var(--gap-xl) 0;
+      overflow: hidden;
+    }
+    .testimonials__header {
+      margin-bottom: var(--gap-lg);
+      text-align: center;
+    }
+    .testimonials__heading {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 400;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+      margin-top: 0.75rem;
+    }
+    .testimonials__track {
+      display: grid;
+      gap: var(--gap-md);
+    }
+    .testimonial {
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(200,178,154,0.12);
+      position: relative;
+    }
+    .testimonial::before {
+      content: '\201C';
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+      font-family: var(--serif);
+      font-size: 5rem;
+      color: var(--amber);
+      line-height: 1;
+      opacity: 0.5;
+    }
+    .testimonial__body {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      line-height: 1.65;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+      padding-top: 1.5rem;
+    }
+    .testimonial__author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .testimonial__avatar {
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .testimonial__avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .testimonial__name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--cream);
+    }
+    .testimonial__role {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mist);
+      margin-top: 0.1rem;
+    }
+    .testimonial__stars {
+      margin-left: auto;
+      color: var(--gold);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+    }
+    @media (min-width: 768px) {
+      .testimonials__track { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1100px) {
+      .testimonials__track { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ─── Location ───────────────────────────────────────────── */
+    .location {
+      background: var(--parchment);
+      color: var(--ink);
+      padding: var(--gap-xl) 0;
+    }
+    .location__grid {
+      display: grid;
+      gap: var(--gap-lg);
+    }
+    .location__image {
+      position: relative;
+      overflow: hidden;
+    }
+    .location__image img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+    .location__info { }
+    .location__overline { margin-bottom: 1.25rem; }
+    .location__heading {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1.75rem;
+      color: var(--espresso);
+    }
+    .location__details {
+      display: grid;
+      gap: 1.5rem;
+    }
+    .location__detail-row {
+      display: grid;
+      grid-template-columns: 1.25rem 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    .location__icon {
+      width: 1.25rem; height: 1.25rem;
+      color: var(--amber);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .location__detail-title {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.35rem;
+    }
+    .location__detail-body {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--roast);
+    }
+    .location__map-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      padding: 0.9rem 1.75rem;
+      background: var(--espresso);
+      color: var(--cream);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .location__map-btn:hover { background: var(--roast); }
+    @media (min-width: 900px) {
+      .location__grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
+    }
+
+    /* ─── CTA ────────────────────────────────────────────────── */
+    .cta {
+      background: var(--amber);
+      padding: var(--gap-xl) 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("https://picsum.photos/seed/coffee-texture/1600/600");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.06;
+    }
+    .cta__inner { position: relative; z-index: 1; }
+    .cta__overline { color: var(--ink); margin-bottom: 1.25rem; opacity: 0.7; }
+    .cta__heading {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 400;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .cta__body {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(14,10,5,0.75);
+      max-width: 44ch;
+      margin: 0 auto 2.5rem;
+    }
+    .cta__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .btn-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2rem;
+      background: var(--ink);
+      color: var(--cream);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-dark:hover { background: var(--roast); transform: translateY(-1px); }
+    .btn-outline-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2rem;
+      border: 2px solid var(--ink);
+      color: var(--ink);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .btn-outline-dark:hover { background: rgba(14,10,5,0.1); }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      padding: var(--gap-lg) 0 var(--gap-md);
+    }
+    .footer__grid {
+      display: grid;
+      gap: var(--gap-lg);
+    }
+    .footer__brand { }
+    .footer__brand-name {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--cream);
+      margin-bottom: 0.25rem;
+    }
+    .footer__brand-tagline {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mist);
+      margin-bottom: 1.5rem;
+    }
+    .footer__brand-desc {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--mist);
+      max-width: 34ch;
+    }
+    .footer__social {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .footer__social-link {
+      width: 2.25rem; height: 2.25rem;
+      border: 1px solid rgba(200,178,154,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mist);
+      font-size: 0.75rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .footer__social-link:hover { border-color: var(--amber); color: var(--amber); }
+    .footer__col-title {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.25rem;
+    }
+    .footer__links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .footer__links a {
+      font-size: 0.9rem;
+      color: var(--mist);
+      transition: color 0.2s;
+    }
+    .footer__links a:hover { color: var(--cream); }
+    .footer__divider {
+      border: none;
+      border-top: 1px solid rgba(200,178,154,0.1);
+      margin: var(--gap-md) 0 var(--gap-sm);
+    }
+    .footer__bottom {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .footer__copy {
+      font-size: 0.75rem;
+      color: rgba(200,178,154,0.45);
+      letter-spacing: 0.05em;
+    }
+    .footer__legal {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer__legal a {
+      font-size: 0.75rem;
+      color: rgba(200,178,154,0.45);
+      transition: color 0.2s;
+    }
+    .footer__legal a:hover { color: var(--mist); }
+    @media (min-width: 768px) {
+      .footer__grid { grid-template-columns: 2fr 1fr 1fr; }
+    }
+
+    /* ─── Scroll Animations ──────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(2rem);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .ticker__track { animation-play-state: paused; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="เมนูหลัก">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="#" class="nav__logo" aria-label="ร้านกาแฟ ของสุรินทร์">
+          ของสุรินทร์
+          <span>Coffee House · Est. 2010</span>
+        </a>
+        <ul class="nav__links" role="list">
+          <li><a href="#story">เรื่องราว</a></li>
+          <li><a href="#menu">เมนู</a></li>
+          <li><a href="#experience">บรรยากาศ</a></li>
+          <li><a href="#location">หาเรา</a></li>
+        </ul>
+        <a href="#location" class="nav__cta">สั่งกาแฟ</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ── Hero ────────────────────────────────────────────────── -->
+    <header class="hero" role="banner">
+      <div class="hero__bg" aria-hidden="true">
+        <img
+          src="https://picsum.photos/seed/surin-coffee-pour/1600/1000"
+          alt=""
+          loading="eager"
+          fetchpriority="high"
+        >
+      </div>
+      <div class="hero__content container">
+        <p class="hero__tag overline reveal">กาแฟดอยสูง · คั่วสด · เสิร์ฟทุกวัน</p>
+        <h1 class="hero__headline reveal reveal-delay-1">
+          กาแฟ<br><em>ดิบ.</em><br>รสชาติ<br>แท้.
+        </h1>
+        <p class="hero__sub reveal reveal-delay-2">
+          ที่ร้านของสุรินทร์ เราไม่ได้ขายแค่กาแฟ —
+          เราขายช่วงเวลาที่คุณได้หยุดพัก ดื่มด่ำกับกลิ่นคั่วที่คุ้นเคย
+          และรู้สึกว่าวันนี้มันดีขึ้นมาอีกนิด
+        </p>
+        <div class="hero__actions reveal reveal-delay-3">
+          <a href="#menu" class="btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+            ดูเมนูกาแฟ
+          </a>
+          <a href="#story" class="btn-ghost">เรื่องราวของเรา</a>
+        </div>
+      </div>
+      <div class="hero__scroll container" aria-hidden="true">
+        เลื่อนลง
+      </div>
+    </header>
+
+    <!-- ── Ticker ───────────────────────────────────────────────── -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span>Arabica จากดอยอินทนนท์</span>
+        <span>คั่วสดทุกวัน</span>
+        <span>บาริสต้ามืออาชีพ</span>
+        <span>เปิดบริการทุกวัน 07.00–21.00</span>
+        <span>Free Wi-Fi</span>
+        <span>รับสั่ง Catering</span>
+        <span>Specialty Coffee</span>
+        <span>Arabica จากดอยอินทนนท์</span>
+        <span>คั่วสดทุกวัน</span>
+        <span>บาริสต้ามืออาชีพ</span>
+        <span>เปิดบริการทุกวัน 07.00–21.00</span>
+        <span>Free Wi-Fi</span>
+        <span>รับสั่ง Catering</span>
+        <span>Specialty Coffee</span>
+      </div>
+    </div>
+
+    <!-- ── Story / Intro ────────────────────────────────────────── -->
+    <section class="intro" id="story" aria-labelledby="story-heading">
+      <div class="container">
+        <div class="intro__grid">
+          <div class="intro__text-block">
+            <p class="intro__number" aria-hidden="true">01</p>
+            <p class="overline reveal">เรื่องราว</p>
+            <h2 class="intro__heading reveal reveal-delay-1" id="story-heading">
+              จากดอยสูง<br>สู่แก้วของคุณ
+            </h2>
+            <p class="intro__body reveal reveal-delay-2">
+              สุรินทร์เริ่มต้นเรียนรู้การคั่วกาแฟจากเพื่อนเกษตรกรบนดอยอินทนนท์
+              เมื่อกว่า 15 ปีที่แล้ว ด้วยความเชื่อว่ากาแฟที่ดีต้องมาจากความสัมพันธ์
+              ที่ดีระหว่างผู้ปลูกและผู้ดื่ม
+            </p>
+            <p class="intro__body reveal reveal-delay-3">
+              วันนี้เราคัดสรรเมล็ดกาแฟโดยตรงจากสวนที่เราไว้วางใจ คั่วในปริมาณน้อย
+              เพื่อให้ได้ความสดและรสชาติที่ดีที่สุดในทุกถ้วย ไม่มีกาแฟสำเร็จรูป
+              ไม่มีทางลัด มีแค่ความตั้งใจในทุกขั้นตอน
+            </p>
+          </div>
+          <div class="intro__image reveal reveal-delay-1">
+            <img
+              src="https://picsum.photos/seed/coffee-roasting-thai/900/700"
+              alt="กระบวนการคั่วกาแฟที่ร้านของสุรินทร์"
+              loading="lazy"
+              width="900"
+              height="700"
+            >
+            <div class="intro__image-caption">คั่วสด · ทุกวัน</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Origin / Heritage ────────────────────────────────────── -->
+    <section class="origin" id="origin" aria-labelledby="origin-heading">
+      <div class="container">
+        <div class="origin__inner">
+          <div class="origin__image-wrap reveal">
+            <img
+              src="https://picsum.photos/seed/mountain-coffee-farm/800/1000"
+              alt="สวนกาแฟบนดอยอินทนนท์แหล่งที่มาของเมล็ดกาแฟของสุรินทร์"
+              loading="lazy"
+              width="800"
+              height="1000"
+            >
+            <div class="origin__badge" aria-hidden="true">
+              <strong>15+</strong>
+              <span>ปี<br>ประสบการณ์</span>
+            </div>
+          </div>
+          <div class="origin__text">
+            <p class="overline origin__overline reveal">ต้นกำเนิด</p>
+            <h2 class="origin__heading reveal reveal-delay-1" id="origin-heading">
+              กาแฟที่มี<br><em>เรื่องเล่า</em><br>ทุกเมล็ด
+            </h2>
+            <p class="origin__body reveal reveal-delay-2">
+              เมล็ดกาแฟ Arabica ของเราปลูกที่ระดับความสูงกว่า 1,200 เมตรเหนือน้ำทะเล
+              อากาศหนาวเย็นและหมอกปกคลุมตลอดปีทำให้เมล็ดกาแฟพัฒนาช้า
+              สร้างความซับซ้อนของรสชาติที่หาได้ยากจากที่ใด
+            </p>
+            <p class="origin__body reveal reveal-delay-2">
+              เราทำงานร่วมกับเกษตรกร 3 ครอบครัวในจังหวัดเชียงใหม่
+              จ่ายราคาที่เป็นธรรมและช่วยพัฒนาวิธีการเก็บเกี่ยวเพื่อคุณภาพที่ดีขึ้น
+              ทุกถ้วยที่คุณดื่มช่วยให้เกษตรกรเหล่านี้มีชีวิตที่ดีขึ้น
+            </p>
+            <div class="origin__stats reveal reveal-delay-3">
+              <div class="origin__stat">
+                <div class="origin__stat-num">3</div>
+                <div class="origin__stat-label">สวนกาแฟ</div>
+              </div>
+              <div class="origin__stat">
+                <div class="origin__stat-num">1,200</div>
+                <div class="origin__stat-label">เมตร ความสูง</div>
+              </div>
+              <div class="origin__stat">
+                <div class="origin__stat-num">100%</div>
+                <div class="origin__stat-label">Arabica แท้</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Menu ─────────────────────────────────────────────────── -->
+    <section class="menu" id="menu" aria-labelledby="menu-heading">
+      <div class="container">
+        <header class="menu__header">
+          <div>
+            <p class="overline reveal">เมนู</p>
+            <h2 class="menu__heading reveal reveal-delay-1" id="menu-heading">
+              ความ<em>พิเศษ</em><br>ในทุกถ้วย
+            </h2>
+          </div>
+          <p class="menu__note reveal reveal-delay-1">
+            ทุกเมนูเตรียมสดใหม่ตามออเดอร์<br>โดยบาริสต้าที่ผ่านการฝึกฝน
+          </p>
+        </header>
+
+        <div class="menu__grid" role="list">
+          <div class="menu__item reveal" role="listitem">
+            <span class="menu__item-num">01</span>
+            <div>
+              <div class="menu__item-name">Surin Signature</div>
+              <div class="menu__item-desc">เอสเพรสโซ่คู่ นมสด กลิ่นคาราเมล เซอร์เวลล์ลิมิเต็ดเอดิชั่น</div>
+            </div>
+            <div class="menu__item-price">75 ฿</div>
+          </div>
+          <div class="menu__item reveal reveal-delay-1" role="listitem">
+            <span class="menu__item-num">02</span>
+            <div>
+              <div class="menu__item-name">Doi Inthanon Cold Brew</div>
+              <div class="menu__item-desc">ดริปเย็น 18 ชั่วโมง กลมกล่อม หวานนิดๆ ไม่ต้องใส่น้ำตาล</div>
+            </div>
+            <div class="menu__item-price">85 ฿</div>
+          </div>
+          <div class="menu__item reveal reveal-delay-2" role="listitem">
+            <span class="menu__item-num">03</span>
+            <div>
+              <div class="menu__item-name">Pour Over V60</div>
+              <div class="menu__item-desc">ดริปมือ เน้นรสชาติดั้งเดิม เหมาะกับผู้รักกาแฟดำ</div>
+            </div>
+            <div class="menu__item-price">90 ฿</div>
+          </div>
+          <div class="menu__item reveal" role="listitem">
+            <span class="menu__item-num">04</span>
+            <div>
+              <div class="menu__item-name">Oat Latte</div>
+              <div class="menu__item-desc">เอสเพรสโซ่คู่ นมโอ๊ต ไม่มีนมวัว เป็นมิตรกับสิ่งแวดล้อม</div>
+            </div>
+            <div class="menu__item-price">80 ฿</div>
+          </div>
+          <div class="menu__item reveal reveal-delay-1" role="listitem">
+            <span class="menu__item-num">05</span>
+            <div>
+              <div class="menu__item-name">Flat White</div>
+              <div class="menu__item-desc">เอสเพรสโซ่เข้มข้น นมร้อนนุ่ม สไตล์ออสเตรเลียแท้</div>
+            </div>
+            <div class="menu__item-price">75 ฿</div>
+          </div>
+          <div class="menu__item reveal reveal-delay-2" role="listitem">
+            <span class="menu__item-num">06</span>
+            <div>
+              <div class="menu__item-name">Thai Iced Coffee</div>
+              <div class="menu__item-desc">กาแฟโบราณ นมข้นหวาน เสิร์ฟกับน้ำแข็งเกล็ด ความคลาสสิกของไทย</div>
+            </div>
+            <div class="menu__item-price">65 ฿</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Experience / Atmosphere ─────────────────────────────── -->
+    <section class="experience" id="experience" aria-labelledby="experience-heading">
+      <div class="container">
+        <p class="overline experience__label reveal">บรรยากาศ</p>
+        <h2 class="experience__headline reveal reveal-delay-1" id="experience-heading">
+          มากกว่า<br><em>แค่กาแฟ</em>
+        </h2>
+
+        <div class="experience__mosaic" aria-label="ภาพบรรยากาศร้าน">
+          <div class="experience__mosaic-item experience__mosaic-item--tall reveal">
+            <img
+              src="https://picsum.photos/seed/cafe-interior-warm/600/900"
+              alt="บรรยากาศภายในร้านที่อบอุ่น"
+              loading="lazy"
+              width="600"
+              height="900"
+            >
+            <div class="experience__mosaic-overlay">
+              <span class="experience__mosaic-caption">Interior · บรรยากาศภายใน</span>
+            </div>
+          </div>
+          <div class="experience__mosaic-item reveal reveal-delay-1">
+            <img
+              src="https://picsum.photos/seed/barista-craft/600/500"
+              alt="บาริสต้าชงกาแฟด้วยฝีมือ"
+              loading="lazy"
+              width="600"
+              height="500"
+            >
+            <div class="experience__mosaic-overlay">
+              <span class="experience__mosaic-caption">Craft · ฝีมือบาริสต้า</span>
+            </div>
+          </div>
+          <div class="experience__mosaic-item reveal reveal-delay-2">
+            <img
+              src="https://picsum.photos/seed/latte-art-cup/600/500"
+              alt="ลาเต้อาร์ตสวยงาม"
+              loading="lazy"
+              width="600"
+              height="500"
+            >
+            <div class="experience__mosaic-overlay">
+              <span class="experience__mosaic-caption">Art · ลาเต้อาร์ต</span>
+            </div>
+          </div>
+          <div class="experience__mosaic-item experience__mosaic-item--wide reveal reveal-delay-1">
+            <img
+              src="https://picsum.photos/seed/cafe-outdoor-garden/1200/500"
+              alt="สวนด้านนอกร้าน"
+              loading="lazy"
+              width="1200"
+              height="500"
+            >
+            <div class="experience__mosaic-overlay">
+              <span class="experience__mosaic-caption">Garden · สวนนอกร้าน</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="experience__pillars" role="list">
+          <div class="experience__pillar reveal" role="listitem">
+            <svg class="experience__pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 0v10m0 0l-3-3m3 3l3-3"/>
+            </svg>
+            <h3 class="experience__pillar-title">สด ทุกวัน</h3>
+            <p class="experience__pillar-text">คั่วเมล็ดกาแฟทุกเช้าตรู่ เพื่อให้ถ้วยแรกของวันคุณได้รับกาแฟที่สดและหอมที่สุด</p>
+          </div>
+          <div class="experience__pillar reveal reveal-delay-1" role="listitem">
+            <svg class="experience__pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+            <h3 class="experience__pillar-title">ใส่ใจทุกถ้วย</h3>
+            <p class="experience__pillar-text">บาริสต้าทุกคนผ่านการอบรมด้านกาแฟ Specialty และเทคนิคการชงที่ถูกต้อง</p>
+          </div>
+          <div class="experience__pillar reveal reveal-delay-2" role="listitem">
+            <svg class="experience__pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            <h3 class="experience__pillar-title">บรรยากาศสบาย</h3>
+            <p class="experience__pillar-text">พื้นที่กว้างขวาง มีโต๊ะทำงาน Wi-Fi รวดเร็ว เหมาะสำหรับทั้งทำงานและพักผ่อน</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Testimonials ─────────────────────────────────────────── -->
+    <section class="testimonials" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <header class="testimonials__header">
+          <p class="overline reveal">รีวิวจากลูกค้า</p>
+          <h2 class="testimonials__heading reveal reveal-delay-1" id="testimonials-heading">
+            ที่นี่คือ<em style="color:var(--gold)">บ้านที่สอง</em>
+          </h2>
+        </header>
+
+        <div class="testimonials__track" role="list">
+          <article class="testimonial reveal" role="listitem">
+            <p class="testimonial__body">
+              "มาร้านนี้ทุกเช้าเป็นประจำมา 3 ปีแล้ว บาริสต้าจำชื่อเราได้ รู้ว่าเราชอบแบบไหน
+              มันไม่ใช่แค่กาแฟอร่อย มันคือความรู้สึกว่ามีคนรู้จักคุณจริงๆ"
+            </p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar">
+                <img src="https://picsum.photos/seed/customer-thai-woman/100/100" alt="" loading="lazy" width="100" height="100">
+              </div>
+              <div>
+                <div class="testimonial__name">ปวีณา ศรีสุวรรณ</div>
+                <div class="testimonial__role">ครูประจำการ · ลูกค้า 3 ปี</div>
+              </div>
+              <div class="testimonial__stars" aria-label="5 ดาว">★★★★★</div>
+            </div>
+          </article>
+
+          <article class="testimonial reveal reveal-delay-1" role="listitem">
+            <p class="testimonial__body">
+              "Cold Brew ที่นี่ดีที่สุดที่เคยดื่มในชีวิต ไม่มีขม ไม่มีเปรี้ยวรุนแรง
+              หอมนุ่มและกลมกล่อม เป็น Cold Brew เดียวที่กินได้โดยไม่ต้องเติมน้ำตาล"
+            </p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar">
+                <img src="https://picsum.photos/seed/customer-thai-man/100/100" alt="" loading="lazy" width="100" height="100">
+              </div>
+              <div>
+                <div class="testimonial__name">ณัฐพงศ์ วงศ์ประเสริฐ</div>
+                <div class="testimonial__role">นักออกแบบกราฟิก · Coffee Enthusiast</div>
+              </div>
+              <div class="testimonial__stars" aria-label="5 ดาว">★★★★★</div>
+            </div>
+          </article>
+
+          <article class="testimonial reveal reveal-delay-2" role="listitem">
+            <p class="testimonial__body">
+              "ข้ามาทำงานที่ร้านนี้บ่อยมาก Wi-Fi เร็ว ที่นั่งสบาย เสียงดนตรีไม่ดัง
+              และกาแฟก็ดีจนทำงานได้อย่างมีสมาธิ ขอบคุณร้านสุรินทร์มากครับ"
+            </p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar">
+                <img src="https://picsum.photos/seed/customer-freelancer/100/100" alt="" loading="lazy" width="100" height="100">
+              </div>
+              <div>
+                <div class="testimonial__name">สิทธิพร จิตอารี</div>
+                <div class="testimonial__role">Freelance Developer</div>
+              </div>
+              <div class="testimonial__stars" aria-label="5 ดาว">★★★★★</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Location ─────────────────────────────────────────────── -->
+    <section class="location" id="location" aria-labelledby="location-heading">
+      <div class="container">
+        <div class="location__grid">
+          <div class="location__image reveal">
+            <img
+              src="https://picsum.photos/seed/cafe-storefront-thai/900/700"
+              alt="หน้าร้านกาแฟของสุรินทร์"
+              loading="lazy"
+              width="900"
+              height="700"
+            >
+          </div>
+          <div class="location__info">
+            <p class="overline location__overline reveal">หาเรา</p>
+            <h2 class="location__heading reveal reveal-delay-1" id="location-heading">
+              แวะมาดื่ม<br>กาแฟสักถ้วย
+            </h2>
+            <div class="location__details">
+              <div class="location__detail-row reveal reveal-delay-1">
+                <svg class="location__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/>
+                </svg>
+                <div>
+                  <div class="location__detail-title">ที่อยู่</div>
+                  <div class="location__detail-body">
+                    123 ถนนนิมมานเหมินทร์ ซอย 9<br>
+                    แขวงสุเทพ อำเภอเมือง<br>
+                    เชียงใหม่ 50200
+                  </div>
+                </div>
+              </div>
+              <div class="location__detail-row reveal reveal-delay-2">
+                <svg class="location__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <div>
+                  <div class="location__detail-title">เวลาทำการ</div>
+                  <div class="location__detail-body">
+                    จันทร์ – ศุกร์: 07:00 – 21:00 น.<br>
+                    เสาร์ – อาทิตย์: 07:00 – 22:00 น.<br>
+                    <em style="font-size:0.85em;color:var(--amber)">เปิดทุกวัน ไม่หยุดนักขัตฤกษ์</em>
+                  </div>
+                </div>
+              </div>
+              <div class="location__detail-row reveal reveal-delay-3">
+                <svg class="location__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+                <div>
+                  <div class="location__detail-title">ติดต่อ</div>
+                  <div class="location__detail-body">
+                    <a href="tel:+6653123456" style="color:inherit">053-123-456</a><br>
+                    <a href="mailto:hello@surincoffee.th" style="color:inherit">hello@surincoffee.th</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="https://maps.google.com" class="location__map-btn reveal reveal-delay-3" target="_blank" rel="noopener noreferrer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/>
+              </svg>
+              ดูบน Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ──────────────────────────────────────────────────── -->
+    <section class="cta" aria-labelledby="cta-heading">
+      <div class="cta__inner container">
+        <p class="overline cta__overline reveal">เริ่มต้นวันใหม่</p>
+        <h2 class="cta__heading reveal reveal-delay-1" id="cta-heading">
+          พบกันพรุ่งนี้<br>เช้าที่ร้านเรา
+        </h2>
+        <p class="cta__body reveal reveal-delay-2">
+          สั่ง Signature blend ก่อน 09:00 น. รับฟรี Croissant ทันที
+          เพราะวันที่ดีเริ่มต้นจากกาแฟดีๆ และผู้คนที่ใส่ใจคุณ
+        </p>
+        <div class="cta__actions reveal reveal-delay-3">
+          <a href="tel:+6653123456" class="btn-dark">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+            โทรสั่งจอง
+          </a>
+          <a href="#location" class="btn-outline-dark">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.244a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/>
+            </svg>
+            ดูแผนที่
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__brand-name">ของสุรินทร์</div>
+          <div class="footer__brand-tagline">Coffee House · Specialty Coffee · Est. 2010</div>
+          <p class="footer__brand-desc">
+            ร้านกาแฟที่เชื่อว่ากาแฟดีๆ ต้องมาจากความสัมพันธ์ที่ดี
+            ระหว่างผู้ปลูก ผู้คั่ว และผู้ดื่ม
+            ทุกถ้วยมีเรื่องเล่าและความตั้งใจแฝงอยู่
+          </p>
+          <div class="footer__social" aria-label="โซเชียลมีเดีย">
+            <a href="#" class="footer__social-link" aria-label="Facebook">f</a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">ig</a>
+            <a href="#" class="footer__social-link" aria-label="LINE">L</a>
+          </div>
+        </div>
+
+        <nav aria-label="เมนูร้าน">
+          <div class="footer__col-title">ร้านของเรา</div>
+          <ul class="footer__links" role="list">
+            <li><a href="#story">เรื่องราว</a></li>
+            <li><a href="#menu">เมนูกาแฟ</a></li>
+            <li><a href="#experience">บรรยากาศ</a></li>
+            <li><a href="#location">หาเรา</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="ข้อมูลอื่นๆ">
+          <div class="footer__col-title">ข้อมูลเพิ่มเติม</div>
+          <ul class="footer__links" role="list">
+            <li><a href="#">เมนูเต็ม</a></li>
+            <li><a href="#">จองโต๊ะ</a></li>
+            <li><a href="#">Catering</a></li>
+            <li><a href="#">สั่งเมล็ดกาแฟ</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <hr class="footer__divider">
+
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2025 ร้านกาแฟ ของสุรินทร์ · สงวนลิขสิทธิ์ทุกประการ</p>
+        <nav class="footer__legal" aria-label="นโยบาย">
+          <a href="#">นโยบายความเป็นส่วนตัว</a>
+          <a href="#">เงื่อนไขการใช้งาน</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer for scroll-reveal animations
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!els.length) return;
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      els.forEach(function (el) { observer.observe(el); });
+    })();
+
+    // Sticky nav transparency
+    (function () {
+      var nav = document.querySelector('.nav');
+      if (!nav) return;
+
+      function updateNav() {
+        var scrolled = window.scrollY > 60;
+        nav.style.background = scrolled
+          ? 'rgba(14,10,5,0.92)'
+          : 'transparent';
+        nav.style.backdropFilter = scrolled ? 'blur(12px)' : 'none';
+        nav.style.borderBottom = scrolled
+          ? '1px solid rgba(200,178,154,0.08)'
+          : 'none';
+        nav.style.transition = 'background 0.3s, backdrop-filter 0.3s, border-bottom 0.3s';
+      }
+
+      window.addEventListener('scroll', updateNav, { passive: true });
+      updateNav();
+    })();
+  </script>
+
+</body>
+</html>
